@@ -1,6 +1,5 @@
 <?php
 require_once("../control/head.php");
-require_once("../control/sidebar.php");
 ?>
 <!-- up anh -->
 <?php
@@ -63,15 +62,18 @@ if(isset($_POST['save'])){
                 $db->exec("INSERT INTO `factory` (`f_name`, `f_img`,`f_mail`, `f_phone`, `represent`,`rep_phone`,`f_street`,`f_ward`,`f_district`,`f_city`,`f_nation`,`license`) VALUES ('$name','$img','$mail','$phone','$represent','$rep_phone','$street','$ward','$district','$city','$nation','$license')" );
                 echo '<script>alert("Add new fatory infomation successfully"); window.location = "../factory.php ";</script>';
             }else{ 
-                echo '<script>alert(" Image upload failed, please try again after some time."); window.location = "../view/addFact.php ";</script>';
+                $msg = 'Image upload failed, please try again after some time.';
+                header("location:../view/addFact.php?msg='$msg'");
             } 
         }else{ 
             
-            echo '<script>alert(" Sorry, only an image file is allowed to upload."); window.location = "../view/addFact.php ";</script>';
+            $msg = 'Sorry, only an image file is allowed to upload.';
+            header("location:../view/addFact.php?msg='$msg'");
         } 
     }else{  
         // header("location:../view/addFact.php");
-            echo '<script>alert(" Please select an image file."); window.location = "../view/addFact.php ";</script>';
+        $msg = 'Please add an image file';
+        header("location:../view/addFact.php?msg='$msg'");
     } 
 } 
  

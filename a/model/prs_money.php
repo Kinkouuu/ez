@@ -1,6 +1,6 @@
 <?php
 require_once("../control/head.php");
-require_once("../control/sidebar.php");
+
 ?>
 <?php
     if (isset($_POST['save'])) {

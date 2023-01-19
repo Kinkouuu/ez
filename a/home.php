@@ -1,4 +1,5 @@
 <?php
+require_once("control/head.php");
 require_once("control/sidebar.php");
 ?>
 <div class="container-fluid bg-dark mt-2" style="height: 90vh;">
@@ -22,7 +23,7 @@ require_once("control/sidebar.php");
                         <h3><?php echo $db->query("SELECT * FROM `user`")->rowcount(); ?></h3>
                         <p>Users</p>
                     </div>
-                    <a href="product.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="user.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -109,7 +110,7 @@ require_once("control/sidebar.php");
                         <h3><?php echo $db->query("SELECT * FROM `gb`")->rowcount(); ?></h3>
                         <p>Start Soucing</p>
                     </div>
-                    <a href="product.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="sourcing.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 

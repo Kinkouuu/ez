@@ -1,7 +1,6 @@
 <?php
 require_once("../control/head.php");
 require_once("../control/sidebar.php");
-//them nguoi dung vao danh sach
 ?>
 
 <?php

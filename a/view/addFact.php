@@ -26,9 +26,9 @@ require_once("../control/sidebar.php");
                     <div class="form-group">
                         <input type="file" name="image" class="form-control">
                         <?php 
-                                                        if (isset($_GET['msg'])) {
-                                                            echo '<small class ="form-text" style="color:red;">' . $_GET['msg'] . '</small>';
-                                                        }
+                            if (isset($_GET['msg'])) {
+                                echo '<small class ="form-text" style="color:red;">' . $_GET['msg'] . '</small>';
+                            }
                         ?>
                         
                     </div>
@@ -89,9 +89,10 @@ require_once("../control/sidebar.php");
             <div class="form-group row  mb-1">
                 <label class="col-sm-2 col-form-label">License </label>
                 <div class="col-sm-10">
-                    <div class="form-group">
-                        <textarea name="license" id="" rows="5" style="width: 100%;"></textarea>
-                    </div>
+                <div class="form-floating">
+                            <textarea class="form-control" name="license" id="floatingTextarea" style="height: calc(12rem + 2px); width:100%"></textarea>
+                            <label for="floatingTextarea" style="color:grey">Start with "-" when entering a new line</label>
+                        </div>
                 </div>
             </div>
             <div class="form-group row">

@@ -1,6 +1,4 @@
-<?php 
-require_once("head.php")
-?>
+
 <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; background-color:gray" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large bg-light" onclick="w3_close()">
   <i class="fa-solid fa-users-gear"></i>

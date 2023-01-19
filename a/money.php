@@ -5,12 +5,12 @@ require_once("control/sidebar.php");
 
 <?php
 if (isset($_POST['save'])) {
-    $m_id = mpost('m_id');
-    $cur = mpost('cur');
-    $ex = mpost('ex');
+    $m_id = post('m_id');
+    $cur = post('cur');
+    $ex = post('ex');
 
     $db->exec("UPDATE `money` SET `ex` = '$ex' WHERE `m_id` = '$m_id'");
-    echo '<script>alert("Đã cập nhật tỉ giá 1' . $cur . ' = ' . $ex . ' VND"); window.location = "money.php";</script>';
+    echo '<script>alert("Đã cập nhật tỉ giá 1 ' .$cur. ' = ' . $ex . ' VND"); window.location = "money.php";</script>';
 }
 ?>
 <div class="container">
@@ -40,21 +40,18 @@ if (isset($_POST['save'])) {
                                     <input type="text" name="m_id" hidden value="<?= $m_id ?>"><?= $tien['m_id'] ?>
                                 </td>
                                 <td>
+                                <input type="text" name="cur" hidden value="<?= $tien['sign'] ?>">
                                     <?= $tien['m_name'] ?>(<?= $tien['sign'] ?>)
                                 </td>
-                                <td> <input type="text" name="ex" value="<?= $tien['ex'] ?>"> VND</td>
+                                <td> 
+                                    <input type="number" name="ex" value="<?= $tien['ex'] ?>"> VND
+                                </td>
                                 <td>
                                     <button type="submit" name="save" class="btn btn-success">
                                         <i class="fas fa-solid fa-check"></i>
                                     </button>
                                 </td>
-
                             </form>
-
-
-
-
-
                         </tr>
                     <?php } ?>
                 </tbody>
