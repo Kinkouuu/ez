@@ -6,23 +6,23 @@
 </button>
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="w3-bar-item w3-button d-flex align-items-center">
-          <i class="nav-icon far fa-circle" style="color:blue"></i>
-            <a href="#" class="nav-link" style="color:blue">Products
+          <i class="nav-icon far fa-circle" style="color:#0c56f5"></i>
+            <a href="#" class="nav-link" style="color:#0c56f5">Products
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
-          <i class="nav-icon far fa-circle" style="color:green"></i>
-            <a href="#" class="nav-link" style="color:green">Users
+          <i class="nav-icon far fa-circle" style="color:#628ff0"></i>
+            <a href="#" class="nav-link" style="color:#628ff0">Users
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
-          <i class="nav-icon far fa-circle" style="color:darkcyan"></i>
-            <a href="#" class="nav-link" style="color:darkcyan">Orders
+          <i class="nav-icon far fa-circle" style="color:#1ff2ef"></i>
+            <a href="#" class="nav-link" style="color:#1ff2ef">Orders
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
-          <i class="nav-icon far fa-circle"  style="color:cyan" ></i>
-            <a href="#" class="nav-link"  style="color:cyan">Currency Exchange
+          <i class="nav-icon far fa-circle"  style="color:#69f051" ></i>
+            <a href="#" class="nav-link"  style="color:#69f051">Currency Exchange
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
@@ -51,8 +51,13 @@
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
-          <i class="nav-icon far fa-circle" style="color:Crimson"></i>
-            <a href="#" class="nav-link" style="color:Crimson">Start Soucing
+          <i class="nav-icon far fa-circle" style="color:#f097a4"></i>
+            <a href="#" class="nav-link" style="color:#f097a4">Start Soucing
+            </a>
+        </li>
+        <li class="w3-bar-item w3-button d-flex align-items-center">
+          <i class="nav-icon far fa-circle" style="color:#eb3852"></i>
+            <a href="#" class="nav-link" style="color:#eb3852">Shipment
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">

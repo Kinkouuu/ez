@@ -7,7 +7,7 @@ require_once("control/sidebar.php");
         <div class="row">
         <!-- small box -->
             <div class="col-md-2">
-                <div class="box" style="background-color: blue;">
+                <div class="box" style="background-color: #0c56f5;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `product`")->rowcount(); ?></h3>
                         <p>Products</p>
@@ -18,7 +18,7 @@ require_once("control/sidebar.php");
             
                     <!-- small box -->
                     <div class="col-md-2">
-                <div class="box" style="background-color: green;">
+                <div class="box" style="background-color: #628ff0;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `user`")->rowcount(); ?></h3>
                         <p>Users</p>
@@ -29,18 +29,18 @@ require_once("control/sidebar.php");
 
                     <!-- small box -->
                     <div class="col-md-2">
-                <div class="box" style="background-color: darkcyan;">
+                <div class="box" style="background-color: #1ff2ef;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `order`")->rowcount(); ?></h3>
                         <p>Orders</p>
                     </div>
-                    <a href="product.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="order.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
                     <!-- small box -->
                     <div class="col-md-2">
-                <div class="box" style="background-color: cyan;">
+                <div class="box" style="background-color:#69f051;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `money`")->rowcount(); ?></h3>
                         <p>Currency Exchange</p>
@@ -105,7 +105,7 @@ require_once("control/sidebar.php");
             </div>
                                 <!-- small box -->
                                 <div class="col-md-2">
-                <div class="box" style="background-color:Crimson;">
+                <div class="box" style="background-color:#f097a4;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `gb`")->rowcount(); ?></h3>
                         <p>Start Soucing</p>
@@ -113,10 +113,20 @@ require_once("control/sidebar.php");
                     <a href="sourcing.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            <div class="col-md-2">
+                <div class="box" style="background-color:#eb3852;">
+                    <div class="inner">
+                        <h3><?php echo $db->query("SELECT * FROM `shipment`")->rowcount(); ?></h3>
+                        <p>Shipment</p>
+                    </div>
+                    <a href="shipment.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
 
                                 <!-- small box -->
                                 <div class="col-md-2">
-                <div class="box" style="background-color:White;">
+                <div class="box" style="background-color:#f50505;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `history`")->rowcount(); ?></h3>
                         <p>Operation History</p>

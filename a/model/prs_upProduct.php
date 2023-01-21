@@ -2,19 +2,16 @@
 require_once("../control/head.php");
 ?>
 <?php
-
+$p_id = post('p_id');
+// echo $p_id;
+$p = $db->query("SELECT * FROM `product` WHERE `p_id` = '$p_id'")->fetch();
 // Client ID of Imgur App 
 $IMGUR_CLIENT_ID = "21cc7d2a74b1ed5";
-
+$statusMsg = '';
 $imgurData = array();
 
 // If the form is submitted 
-if (isset($_POST['save'])) {
-
-    // Validate form input fields 
-    if (empty($_FILES["image"]["name"])) {
-        $valErr .= 'Please select a file to upload.<br/>';
-    }
+if (isset($_POST['submit'])) {
 
     // Check whether user inputs are empty 
     if (!empty($_FILES["image"]["name"])) {
@@ -57,34 +54,37 @@ if (isset($_POST['save'])) {
                 $imgurData = $responseArr;
                 $p_img = $imgurData->data->link;
                 // echo $p_img;
-            //information
+            
+            } else {
+                $p_img = $p['p_img'];
+                $msg = 'Image upload failed, please try again after some time.';
+                echo '<script>alert("Image upload failed, please try again after some time."); window.location = "../view/upProduct.php?p_id=' . $p_id . ' ";</script>';
+            }
+        } else {
+            $p_img = $p['p_img'];
+            $msg = 'Sorry, only an image file is allowed to upload.';
+            echo '<script>alert("Sorry, only an image file is allowed to upload."); window.location = "../view/upProduct.php?p_id=' . $p_id . ' ";</script>';
+        }
+    } else {
+        $p_img = $p['p_img'];
+    }
+    //information
                 $name = post('name');
                 $c_id = post('type');
                 $f_id = post('f_id');
-                $specs = post('spec');
+                $specs = post('specs');
                 $p_gb = post('p_gb');
                 $p_stock = post('p_stock');
                 $p_50 = post('p_50');
                 $p_10 = post('p_10');
-                $m_id = post('money');
+                $m_id = post('m_id');
                 $remain = post('remain');
                 $video = post('video');
-                $db->query("INSERT INTO `product` (`p_img`, `p_name`,`f_id`, `c_id`,`specs`,`remain`,`video`) VALUES ('$p_img','$name','$f_id','$c_id','$specs','$remain','$video')");
-                $p_id = $db->lastInsertId();
-                $insert = $db->exec ("INSERT INTO `price` (`p_id`,`m_id`,`p_gb`,`p_stock`,`p_10`,`p_50`) VALUES ('$p_id','$m_id','$p_gb','$p_stock','$p_10','$p_50')");
-                echo '<script>alert("Add new product infomation successfully"); window.location = "../product.php ";</script>';
-            } else {
-                $msg = 'Image upload failed, please try again after some time.';
-                header("location:../view/addProduct.php?msg='$msg'");
-            }
-        } else {
-            $msg = 'Sorry, only an image file is allowed to upload.';
-            header("location:../view/addProduct.php?msg='$msg'");
-        }
-    } else {
-        $msg = 'Please add an image file';
-        header("location:../view/addProduct.php?msg='$msg'");
-    }
+                // echo $video;
+                $db->exec("UPDATE `product` SET `p_name` = '$name', `c_id` = '$c_id', `f_id` = '$f_id',`p_img` = '$p_img', `specs` = '$specs',`remain` = '$remain',`video` = '$video' WHERE `p_id` = '$p_id'");
+                $up = $db->query("UPDATE `price` SET `p_gb` = '$p_gb',`p_stock` = '$p_stock',`p_50` = '$p_50',`p_10` = '$p_10' WHERE `p_id` = '$p_id'");
+                //  var_dump($up);
+                echo '<script>alert("Update product\'s infomation successfully"); window.location = "../view/upProduct.php?p_id= '.$p_id.' ";</script>';
 }
 ?>
 <?php

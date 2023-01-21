@@ -7,7 +7,7 @@ $g_id = $_GET['g_id'];
 $list = $db->query("SELECT * FROM `gb` WHERE `g_id` = '$g_id'")->fetch();
 $today = strtotime(date('Y-m-d H:i:s'));
 
-echo $today;
+// echo $g_id;
 
 if (isset($_GET['save'])) {
     $g_id = get('g_id');
@@ -100,10 +100,10 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                     <select class="select-type" name="type" aria-label="Default select example">
                         <option selected value="">All type product</option>
                         <?php
-                        $type = $db->query("SELECT * FROM `type` WHERE `type`.type != '' order by `t_id` ASC");
+                        $type = $db->query("SELECT * FROM `cate` WHERE `cate`.type != '' order by `c_id` ASC");
                         foreach ($type as $t) {
                         ?>
-                            <option value="<?= $t['t_id'] ?>"><?php echo $t['type'] ?></option>
+                            <option value="<?= $t['c_id'] ?>"><?php echo $t['type'] ?></option>
                         <?php } ?>
                     </select>
                     <input type="submit" name="submit" value="✔">
@@ -113,7 +113,7 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                             <table class="table table-striped">
                                 <caption style="caption-side:top">ALL PRODUCTS</caption>
                                 <tr>
-                                    <th>ID product</th>
+                                    <th>#</th>
                                     <th>Name product</th>
                                     <th>Price</th>
                                     <th>Type</th>
@@ -123,9 +123,9 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                                 <?php
                                 if (isset($_POST['submit']) && $_POST['type'] != "") {
                                     $type = $_POST['type'];
-                                    $c_p = $db->query("SELECT * FROM (`product` INNER JOIN `money` ON `product`.m_id = `money`.m_id) INNER JOIN `cate` ON `product`.c_id = `type`.c_id WHERE `product`.c_id = '$type' AND  `product`.p_id NOT IN(SELECT `p_id` FROM `gb_list` INNER JOIN `gb` ON `gb_list`.g_id = `gb`.g_id WHERE $today BETWEEN `gb`.s_date AND `gb`.e_date);");
+                                    $c_p = $db->query("SELECT * FROM ((`product` INNER JOIN `cate` ON `product`.c_id = `cate`.c_id) INNER JOIN `price` ON `product`.p_id = `price`.p_id) INNER JOIN `money` ON `price`.m_id = `money`.m_id WHERE `product`.c_id = '$type' AND  `product`.p_id NOT IN(SELECT `p_id` FROM `gb_list` INNER JOIN `gb` ON `gb_list`.g_id = `gb`.g_id WHERE $today BETWEEN `gb`.s_date AND `gb`.e_date);");
                                 } else {
-                                    $c_p = $db->query("SELECT * FROM (`product` INNER JOIN `money` ON `product`.m_id = `money`.m_id) INNER JOIN `cate` ON `product`.c_id = `type`.c_id WHERE  `product`.p_id NOT IN(SELECT `p_id` FROM `gb_list` INNER JOIN `gb` ON `gb_list`.g_id = `gb`.g_id WHERE $today BETWEEN `gb`.s_date AND `gb`.e_date);");
+                                    $c_p = $db->query("SELECT * FROM ((`product` INNER JOIN `cate` ON `product`.c_id = `cate`.c_id) INNER JOIN `price` ON `product`.p_id = `price`.p_id) INNER JOIN `money` ON `price`.m_id = `money`.m_id WHERE `product`.p_id NOT IN(SELECT `p_id` FROM `gb_list` INNER JOIN `gb` ON `gb_list`.g_id = `gb`.g_id WHERE $today BETWEEN `gb`.s_date AND `gb`.e_date);");
                                 }
 
                                 foreach ($c_p as $p) {
@@ -134,7 +134,7 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                                     <tr>
                                         <td><?php echo $p_id ?></td>
                                         <td><?php echo $p['p_name'] ?></td>
-                                        <td><?php echo $p['price'] ?><?php echo $p['sign'] ?> </td>
+                                        <td><?php echo number_format($p['p_gb']) ?> <?php echo $p['sign'] ?> </td>
                                         <td><?php echo $p['type'] ?></td>
                                         <td><?php echo $p['cate'] ?></td>
                                         <?php
@@ -159,16 +159,15 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                                     <th>&nbsp;</th>
                                 </tr>
                                 <?php
-                                $b2 = $db->query("SELECT * FROM ((`product` INNER JOIN `type` ON `product`.t_id = `type`.t_id) INNER JOIN `money` ON `product`.m_id =  `money`.m_id) INNER JOIN `gb_list` ON `gb_list`.p_id = `product`.p_id  WHERE `g_id` = '$g_id'");
+                                $b2 = $db->query("SELECT * FROM (((`product` INNER JOIN `cate` ON `product`.c_id = `cate`.c_id) INNER JOIN `price` ON `product`.p_id = `price`.p_id) INNER JOIN `money` ON `price`.m_id = `money`.m_id) INNER JOIN `gb_list` ON `product`.p_id = `gb_list`.p_id  WHERE `gb_list`.g_id = '$g_id'");
                                 foreach ($b2 as $row) {
                                 ?>
                                     <tr>
                                         <td><?php echo $row['p_id'] ?></td>
                                         <td><?php echo $row['p_name'] ?></td>
-                                        <td><?php echo $row['price'] ?><?php echo $row['sign'] ?> </td>
+                                        <td><?php echo number_format($row['p_gb']) ?> <?php echo $row['sign'] ?> </td>
                                         <td><?php echo $row['type'] ?></td>
                                         <td><?php echo $row['cate'] ?></td>
-
                                         <?php
                                         if ($today < $list['e_date']) { ?>
                                             <td>
