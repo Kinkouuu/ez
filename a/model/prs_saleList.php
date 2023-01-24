@@ -1,6 +1,5 @@
 <?php
 require_once("../control/head.php");
-
 ?>
 <?php
 $s_id = post('s_id');

@@ -20,18 +20,6 @@ require_once("control/sidebar.php");
                         <th>
                             Product
                         </th>
-                        <!-- <th>
-                            Amount
-                        </th>
-                        <th>
-                            Price
-                        </th>
-                        <th>
-                            Ship-fee
-                        </th>
-                        <th>
-                            Discount
-                        </th> -->
                         <th>
                             Provisional
                         </th>
@@ -52,7 +40,7 @@ require_once("control/sidebar.php");
                         </th>
                         <th>Note</th>
                         <th>
-                            Processing
+                            Processing        
                         </th>
                         <th>
                             Payment
@@ -66,9 +54,9 @@ require_once("control/sidebar.php");
                         <th>
                             Need Paid
                         </th>
-                        <!-- <th>
+                        <th>
                             &nbsp;
-                        </th> -->
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,9 +81,7 @@ require_once("control/sidebar.php");
 
                                         <tr>
                                             <td style="margin: 0; padding: 0">
-                                                <a class="btn btn-link link-primary" href="details.php?id=<?= $id; ?>" role="button">
                                                     <?php echo $id ?>
-                                                </a>
                                             </td>
                                             <td style="margin: 0; padding: 0">
                                                 <?php echo $d['p_name'] ?>
@@ -123,7 +109,12 @@ require_once("control/sidebar.php");
                                         </td> -->
                                             <td style="margin: 0; padding: 0">
                                                 <?php
-                                                $provi = $d['amount'] * $d['d_price'] + $d['fee'] - $discount;
+                                                $tmp = $d['amount'] * $d['d_price'] + $d['fee'] - $discount;
+                                                if($tmp <0){
+                                                    $provi = 0;
+                                                }else{
+                                                    $provi =$tmp;
+                                                }
                                                 $sum += $provi; // tong gia tri tung chi tiet don hang
                                                 echo number_format($provi) . " VND";
                                                 ?>
@@ -169,11 +160,11 @@ require_once("control/sidebar.php");
                                 echo number_format($total - $o['deposit']) . " VND"
                                 ?>
                             </td>
-                            <!-- <td>
-                                <a class="btn btn-primary btn-sm" href="updateStatus.php?o_id=<?= $o_id; ?>">
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="details.php?o_id=<?= $o_id; ?>">
                                     <i class="fas fa-file-pen"></i>
                                 </a>
-                            </td> -->
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
