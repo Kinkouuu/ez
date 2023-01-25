@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../control/head.php';
 require_once '../control/sidebar.php';
 ?>
@@ -17,15 +17,18 @@ if (isset($_GET['save'])) {
     $e_date = DateTime::createFromFormat('d-m-Y', $e_day)->getTimestamp();
     $stt = get('stt');
     // echo $g_id . ' from ' . $s_date. ' to ' . $e_date;
-    $db->exec("UPDATE `gb` SET `s_date` = '$s_date',`e_date`='$e_date',`gb_stt` = '$stt' WHERE `g_id` = '$g_id'");
-    $dt = $db->query("SELECT DISTINCT `o_id` FROM `details` WHERE `g_id` = '$g_id'");
-    foreach ($dt as $r) {
-        $o_id = $r['o_id'];
-        $db->exec("UPDATE `order` SET `status` = '$stt' WHERE `o_id` = '$o_id'");
+    $db->exec("UPDATE `gb` SET `s_date` = '$s_date',`e_date`='$e_date',`g_stt` = '$stt' WHERE `g_id` = '$g_id'"); // cap nhat trang thai gb
+    if ($stt != 'Đang mở group buy') {
+        $dt = $db->query("SELECT * FROM `details` WHERE `g_id` = '$g_id'");
+        foreach ($dt as $r) {
+            $id = $r['id'];
+            if ($r['stt'] != 'Đã hủy đơn' || $r['stt'] != 'Đã giao hàng') {
+                $db->exec("UPDATE `details` SET `stt` = '$stt' WHERE `id` = '$id'");
+            }
+        }
     }
     echo '<script>alert("Updated batch ' . $list['g_name'] . '"); window.location = "?g_id=' . $g_id . ' ";</script>';
 }
-
 if (isset($_GET['add'])) { // them san pham gb
     $a_id = get('add');
     $count = $db->query("SELECT * FROM `gb_list` WHERE `g_id` = '$g_id' AND `p_id` = '$a_id'")->rowCount();
@@ -50,29 +53,29 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
 
 
             <form class="d-flex" method="GET">
-                <div class="col-md-2 d-flex">
-                    <label for="" class="col-sm-8">ID group buy: </label>
+                <div class="col-md-2 d-flex align-items-center">
+                    <label for="" class="col-sm-8 text-center">ID group buy: </label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" name="g_id" readonly value="<?= $g_id ?>">
                     </div>
                 </div>
-                <div class="col-md-3 d-flex">
-                    <label for="" class="col-sm-4">From:</label>
+                <div class="col-md-3 d-flex  align-items-center">
+                    <label for="" class="col-sm-4 text-center">Open at:</label>
                     <div class="col-sm-8">
                         <input type="text" name="s_day" id="date_picker1" class="form-control" value="<?= date("d-m-Y", $list['s_date']) ?>">
 
                     </div>
                 </div>
-                <div class="col-md-3 d-flex">
-                    <label for="" class="col-sm-4">To:</label>
+                <div class="col-md-3 d-flex align-items-center">
+                    <label for="" class="col-sm-4 text-center">Close at:</label>
                     <div class="col-sm-8">
 
                         <input type="text" name="e_day" id="date_picker2" class="form-control" value="<?= date("d-m-Y", $list['e_date']) ?>">
                     </div>
                 </div>
 
-                <div class="col-md-3 d-flex">
-                    <label class="col-sm-4">Status:</label>
+                <div class="col-md-3 d-flex  align-items-center">
+                    <label class="col-sm-4 text-center">Status:</label>
                     <div class="col-sm-8">
                         <select class="form-control" name="stt">
                             <option value="Đang mở group buy" <?php echo $list['g_stt'] == 'Đang mở group buy' ? ' selected ' : ''; ?>>Đang mở group buy</option>
@@ -80,6 +83,9 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                             <option value="Đặt hàng nhà máy" <?php echo $list['g_stt'] == 'Đặt hàng nhà máy' ? ' selected ' : ''; ?>>Đặt hàng nhà máy</option>
                             <option value="Hàng ra khỏi nhà máy" <?php echo $list['g_stt'] == 'Hàng ra khỏi nhà máy' ? ' selected ' : ''; ?>>Hàng ra khỏi nhà máy</option>
                             <option value="Đã thông quan" <?php echo $list['g_stt'] == 'Đã thông quan' ? ' selected ' : ''; ?>>Đã thông quan</option>
+                            <option value="Đến kho TP.HCM" <?php echo $list['g_stt'] == 'Đến kho TP.HCM' ? ' selected ' : ''; ?>>Đến kho TP.HCM</option>
+                            <option value="Đến kho Hà Nội" <?php echo $list['g_stt'] == 'Đến kho Hà Nội' ? ' selected ' : ''; ?>>Đến kho Hà Nội</option>
+                            <option value="Vận chuyển nội địa" <?php echo $list['g_stt'] == 'Vận chuyển nội địa' ? ' selected ' : ''; ?>>Vận chuyển nội địa</option>
                         </select>
                     </div>
                 </div>
@@ -114,6 +120,7 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                                 <caption style="caption-side:top">ALL PRODUCTS</caption>
                                 <tr>
                                     <th>#</th>
+                                    <th>Pictures</th>
                                     <th>Name product</th>
                                     <th>Price</th>
                                     <th>Type</th>
@@ -133,6 +140,9 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                                 ?>
                                     <tr>
                                         <td><?php echo $p_id ?></td>
+                                        <td style="width: 15%;">
+                                            <img src="<?= $p['p_img']?>" alt="" style="width: 100%;">
+                                        </td>
                                         <td><?php echo $p['p_name'] ?></td>
                                         <td><?php echo number_format($p['p_gb']) ?> <?php echo $p['sign'] ?> </td>
                                         <td><?php echo $p['type'] ?></td>
@@ -151,7 +161,8 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                             <table class="table table-striped">
                                 <caption style="caption-side:top">GROUP BUY LIST</caption>
                                 <tr>
-                                    <th>ID product</th>
+                                    <th>#</th>
+                                    <th>Pictures</th>
                                     <th>Name product</th>
                                     <th>Price</th>
                                     <th>Type</th>
@@ -164,6 +175,9 @@ if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
                                 ?>
                                     <tr>
                                         <td><?php echo $row['p_id'] ?></td>
+                                        <td style="width: 15%;">
+                                            <img src="<?= $row['p_img']?>" alt="" style="width: 100%;">
+                                        </td>
                                         <td><?php echo $row['p_name'] ?></td>
                                         <td><?php echo number_format($row['p_gb']) ?> <?php echo $row['sign'] ?> </td>
                                         <td><?php echo $row['type'] ?></td>

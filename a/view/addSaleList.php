@@ -24,24 +24,7 @@ if (isset($_GET['rmvUser'])) {
     $db->exec("DELETE FROM `sale_user` WHERE `s_id` = '$s_id' AND `u_id` = '$r_id';");
     echo '<script>window.location = "?s_id=' . $s_id . ' "; </script>';
 }
-//them san pham vao danh sach
-if (isset($_GET['addSP'])) {
-    $ap_id = get('addSP');
-    // echo $s_id. "$" . $a_id;
-    $count = $db->query("SELECT * FROM `sale_product` WHERE `s_id` = '$s_id' AND `p_id` = '$ap_id'")->rowCount();
-    if ($count == 0) {
-        $db->exec("INSERT INTO `sale_product` (`s_id`, `p_id`) VALUES ( '$s_id', '$ap_id')");
-        echo '<script> window.location = "../view/addSaleList.php?s_id=' . $s_id . ' "; </script>';
-    } else {
-        echo '<script>alert("This product has been added in sale list");window.location = "?s_id=' . $s_id . ' "; </script>';
-    }
-}
-// xoa san pham khoi danh sach
-if (isset($_GET['rmvSP'])) {
-    $rp_id =  get('rmvSP');
-    $db->exec("DELETE FROM `sale_product` WHERE `s_id` = '$s_id' AND `p_id` = '$rp_id';");
-    echo '<script>window.location = "?s_id=' . $s_id . ' "; </script>';
-}
+
 ?>
 <div class="container-fluid">
     <form action="../model/prs_saleList.php" method="POST">
@@ -195,12 +178,16 @@ if (isset($_GET['rmvSP'])) {
                     <table class="table table-striped">
                         <caption style="caption-side:top">ALL PRODUCTS</caption>
                         <tr>
-                            <th>ID Product</th>
-                            <th>Product Pictures</th>
+                            <th>ID</th>
+                            <th>Pictures</th>
                             <th>Name Product</th>
                             <th>Category</th>
                             <th>Type</th>
-                            <th>&nbsp</th>
+                            <th>
+                                <button type="submit" class="btn btn-outline-primary" name ="addSP" ata-toggle="tooltip" data-placement="right" title="Thêm sản phẩm đã chọn">
+                                    <i class="fa-regular fa-square-plus"></i>
+                                </button>
+                            </th>
                         </tr>
                         <?php
                         $products = $db->query("SELECT * FROM `product` INNER JOIN `cate` ON `product`.c_id = `cate`.c_id WHERE `p_id` NOT IN (SELECT `p_id` FROM `sale_product` WHERE `s_id` = '$s_id')");
@@ -210,8 +197,8 @@ if (isset($_GET['rmvSP'])) {
                                 <td>
                                     <?php echo $p['p_id'] ?>
                                 </td>
-                                <td>
-                                    <img src="<?= $p['p_img']?>" alt="">
+                                <td style="width: 20%;">
+                                    <img src="<?= $p['p_img']?>" alt="" style="width: 100%;">
                                 </td>
                                 <td>
                                     <?php echo $p['p_name'] ?>
@@ -223,10 +210,7 @@ if (isset($_GET['rmvSP'])) {
                                     <?php echo $p['type'] ?>
                                 </td>
                                 <td>
-                                    <a id="addSP" href="?s_id=<?= $s_id ?>&addSP=<?= $p['p_id'] ?> ">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </a>
-                                </td>
+                                    <input class="form-check-input" type="checkbox" value="<?= $p['p_id'] ?>" name="themSP[]">
                                 </td>
                             </tr>
                         <?php
@@ -239,24 +223,28 @@ if (isset($_GET['rmvSP'])) {
                     <table class="table table-striped">
                         <caption style="caption-side:top">USE FOR PRODUCTS</caption>
                         <tr>
-                            <th>ID Product</th>
-                            <th>Product Pictures</th>
+                            <th>ID</th>
+                            <th>Pictures</th>
                             <th>Name Product</th>
                             <th>Category</th>
                             <th>Type</th>
-                            <th>&nbsp</th>
+                            <th>
+                                <button type="submit" class="btn btn-outline-danger" name ="rmvSP" ata-toggle="tooltip" data-placement="right" title="Xóa sản phẩm đã chọn khỏi danh sách áp dụng">
+                                    <i class="fa-regular fa-square-minus"></i>
+                                </button>
+                            </th>
                         </tr>
                         <?php
                         $usefor = $db->query("SELECT * FROM ((`product` INNER JOIN `cate` ON `product`.c_id = `cate`.c_id ) INNER JOIN `sale_product` ON `product`.p_id = `sale_product`.p_id) INNER JOIN `sale` ON `sale_product`.s_id = `sale`.s_id WHERE `sale_product`.s_id='$s_id'");
                         foreach ($usefor as $for) {
                         ?>
-                            <form action="" method="POST">
+                            
                             <tr>
                                 <td>
                                     <?php echo $for['p_id'] ?>
                                 </td>
-                                <td>
-                                    <img src="<?= $p['p_img']?>" alt="">
+                                <td style="width: 15%;">
+                                    <img src="<?= $for['p_img']?>" alt="" style="width: 100%;">
                                 </td>
                                 <td>
                                     <?php echo $for['p_name'] ?>
@@ -268,13 +256,10 @@ if (isset($_GET['rmvSP'])) {
                                     <?php echo $for['type'] ?>
                                 </td>
                                 <td>
-                                    <a id="rmvSP" href="?s_id=<?= $s_id ?>&rmvSP=<?= $p['p_id'] ?> ">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </a>
-                                </td>
+                                    <input class="form-check-input" type="checkbox" value="<?= $for['p_id'] ?>" name="xoaSP[]">
                                 </td>
                             </tr>
-                            </form>
+
                         <?php
                         }
                         ?>

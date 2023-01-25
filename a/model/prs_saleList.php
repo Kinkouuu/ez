@@ -50,7 +50,29 @@ if (isset($_POST['delSP'])) {
     $db->exec("DELETE FROM `sale_product` WHERE `s_id`='$s_id'");
     echo '<script> window.location = "../view/addSaleList.php?s_id=' . $s_id . ' "; </script>';
 }
-
+//them san pham vao danh sach
+if (isset($_POST['addSP'])) {
+    if(isset($_POST['themSP'])){
+        foreach($_POST['themSP'] as $sp){
+            $db->exec("INSERT INTO `sale_product` (`s_id`, `p_id`) VALUES ( '$s_id', '$sp')");
+            echo '<script> window.location = "../view/addSaleList.php?s_id=' . $s_id . ' "; </script>';
+        }
+    }else{
+        header("location:../view/addSaleList.php?s_id=$s_id");
+    }
+}
+// xoa san pham khoi danh sach
+if (isset($_POST['rmvSP'])) {
+    if(isset($_POST['xoaSP'])){
+        foreach($_POST['xoaSP'] as $xsp){
+            // echo $xsp;
+            $db->exec("DELETE FROM `sale_product` WHERE `s_id` = '$s_id' AND `p_id` = '$sp';");
+            echo '<script> window.location = "../view/addSaleList.php?s_id=' . $s_id . ' "; </script>';
+        }
+    }else{
+        header("location:../view/addSaleList.php?s_id=$s_id");
+    }
+}
 ?>
 <?php
 require_once("../control/head.php");
