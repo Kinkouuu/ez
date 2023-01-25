@@ -11,11 +11,11 @@ if (isset($_GET['id'])) { //xoa don
     $db->exec("UPDATE `details` SET `stt` = 'Đã hủy đơn' WHERE `details`.o_id = $o_id AND `details`.id = '$r_id'");
     echo '<script>alert("Cancel order ID ' . $id . ' successfully"); window.location = "details.php?o_id=' . $o_id . '";</script>';
 }
-if(isset($_POST['sub'])){
+if (isset($_POST['sub'])) {
     $deposit = post('deposit');
     // echo $deposit;
     $db->exec("UPDATE `order` SET `deposit` = '$deposit' WHERE `order`.o_id = $o_id");
-    echo '<script>alert("Update order ID ' . $id . ' deposit = '.$deposit.' VND"); window.location = "details.php?o_id=' . $o_id . '";</script>';
+    echo '<script>alert("Update order ID ' . $id . ' deposit = ' . $deposit . ' VND"); window.location = "details.php?o_id=' . $o_id . '";</script>';
 }
 ?>
 
@@ -56,6 +56,7 @@ if(isset($_POST['sub'])){
             ?>
                 <!-- thong tin chi tiet -->
                 <form action="model/prs_upOrder.php" method="POST">
+                    <input type="hidden" name="id" value="<?= $id ?>">
                     <input type="hidden" name="o_id" value="<?= $o_id ?>">
                     <table class="table table-info table-hover">
                         <thead>
@@ -100,10 +101,27 @@ if(isset($_POST['sub'])){
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="table-light">
-                                    <input type="hidden" name="id" value="<?= $id ?>">
-                                    <?= $id ?>
-                                </td>
+                                <?php
+                                if ($tt['stt'] == 'Đã giao hàng') {
+                                ?>
+                                    <td style="background-color: blue; color:white">
+                                        <?= $id ?>
+                                    </td>
+                                <?php
+                                } else if ($tt['stt'] == 'Đã hủy đơn') {
+                                ?>
+                                    <td style="background-color: red; color:white">
+                                        <?= $id ?>
+                                    </td>
+                                <?php
+                                } else {
+                                ?>
+                                    <td style="background-color: green; color:white">
+                                        <?= $id ?>
+                                    </td>
+                                <?php
+                                }
+                                ?>
                                 <td style="width:15%;">
                                     <img src="<?php echo $tt['p_img'] ?>" alt="">
                                 </td>
@@ -136,8 +154,17 @@ if(isset($_POST['sub'])){
                                     } else {
                                         $provi = $tmp;
                                     }
-                                    echo number_format($provi) . " VND";
-                                    $total += $provi;
+
+                                    if ($tt['stt'] == "Đã hủy đơn") { // ktra tinh trang don
+                                    ?>
+                                        <span style="color:red;text-decoration: line-through;"><?= number_format($provi) . " VND"; ?></span></br>
+
+                                    <?php
+                                        echo '0 VND';
+                                    } else {
+                                        $total += $provi;
+                                        echo number_format($provi) . " VND";
+                                    }
                                     ?>
                                 </td>
                                 <td>
@@ -193,7 +220,7 @@ if(isset($_POST['sub'])){
                                                 <option value="Đóng order" <?php echo $tt['stt'] == 'Đóng order' ? ' selected ' : ''; ?>>Đóng order</option>
                                                 <option value="Đặt hàng nhà máy" <?php echo $tt['stt'] == 'Đặt hàng nhà máy' ? ' selected ' : ''; ?>>Đặt hàng nhà máy</option>
                                                 <option value="Hàng ra khỏi nhà máy" <?php echo $tt['stt'] == 'Hàng ra khỏi nhà máy' ? ' selected ' : ''; ?>>Hàng ra khỏi nhà máy</option>
-                                                <option value="Đã thông quan" <?php echo $tt['stt'] == 'Đa thông quan' ? ' selected ' : ''; ?>>Đã thông quan</option>
+                                                <option value="Đã thông quan" <?php echo $tt['stt'] == 'Đã thông quan' ? ' selected ' : ''; ?>>Đã thông quan</option>
                                                 <option value="Đến kho TP.HCM" <?php echo $tt['stt'] == 'Đến kho TP.HCM' ? ' selected ' : ''; ?>>Đến kho TP.HCM</option>
                                                 <option value="Đến kho Hà Nội" <?php echo $tt['stt'] == 'Đến kho Hà Nội' ? ' selected ' : ''; ?>>Đến kho Hà Nội</option>
                                                 <option value="Vận chuyển nội địa" <?php echo $tt['stt'] == 'Vận chuyển nội địa' ? ' selected ' : ''; ?>>Vận chuyển nội địa</option>
@@ -256,8 +283,8 @@ if(isset($_POST['sub'])){
                 <div class="col-md-3">
                     <form action="" method="POST">
                         <label for="">Deposited:</label>
-                        <input type="number" name="deposit" value="<?=$details['deposit']?>" style="width:30%;">
-                        <button type="submit" class="btn btn-primary" name="sub" >VND <i class="fa-solid fa-money-bills"></i></button>
+                        <input type="number" name="deposit" value="<?= $details['deposit'] ?>" style="width:30%;">
+                        <button type="submit" class="btn btn-primary" name="sub">VND <i class="fa-solid fa-money-bills"></i></button>
                     </form>
                 </div>
                 <div class="col-md-2">

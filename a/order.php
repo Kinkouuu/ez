@@ -110,7 +110,7 @@ require_once("control/sidebar.php");
                                             <td style="margin: 0; padding: 0">
                                                 <?php
                                                 $tmp = $d['amount'] * $d['d_price'] + $d['fee'] - $discount;
-                                                if($tmp <0){
+                                                if($tmp <0 || $d['stt'] == "Đã hủy đơn"){
                                                     $provi = 0;
                                                 }else{
                                                     $provi =$tmp;
