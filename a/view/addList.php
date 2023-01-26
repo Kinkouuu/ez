@@ -41,7 +41,6 @@ if (isset($_GET['add'])) { // them san pham gb
 }
 if (isset($_GET['rmv'])) { // xoa san pham khoi gb list
     $r_id =  get('rmv');
-
     $db->exec("DELETE FROM `gb_list` WHERE `g_id` = '$g_id' AND `p_id` = '$r_id';");
 }
 

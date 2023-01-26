@@ -3,10 +3,7 @@ require_once("../control/head.php");
 require_once("../control/sidebar.php");
 ?>
 
-<?php
-if (isset($_POST['save'])) {
-}
-?>
+
 <!-- Content Header (Page header) -->
 
 <div class="container">
@@ -20,36 +17,35 @@ if (isset($_POST['save'])) {
         <form class="form-horizontal" method="post">
             <div class="form-group row d-flex justify-items-center">
                 <div class="col-sm-6 d-flex">
-                    <label class="col-sm-2 col-form-label">Factory:</label>
-                    <div class="col-sm-10">
-                        <select name="f_id" class="form-control" id="">
+                    <label class="col-sm-3 col-form-label">Factory:</label>
+                    
+                    <div class="col-sm-9">
+                        <select class="form-control" name="f_id" id="fact">
+                        <option selected value="">--Select supply factory--</option>
                             <?php
-                            $fact = $db->query("SELECT * FROM `factory` ORDER BY `f_id` ASC");
-                            foreach ($fact as $f) {
-                            ?>
-                                <option value="<?= $f['f_id'] ?>"><?= $f['f_name'] ?></option>
-                            <?php
-                            }
+                            $facts = $db->query("SELECT * FROM `factory` ORDER BY `f_id` ASC");
+                                foreach ( $facts as $f){
+                                    ?>
+                                    <option value="<?= $f['f_id']?>"><?= $f['f_name']?></option>
+                                    <?php
+                                }
                             ?>
                         </select>
                     </div>
                 </div>
-
                 <div class="col-sm-6 d-flex">
-                    <label class="col-sm-2 col-form-label">Code:</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="code">
+                    <label class="col-sm-3 col-form-label">Code Shipment:</label>
+                    <div class="col-sm-9">
+                       <input type="text" class="form-control" name="code">
+
                     </div>
                 </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-sm-2">
-                    <button type="submit" name="save" class="btn btn-success">
-                        <i class="fas fa-cart-plus"></i> ADD
-                    </button>
+                <div class="col-sm-12 mt-1" style="height: 70vh;overflow-y:auto">
+                                <?php
+                                require_once("data.php");
+                                ?>
                 </div>
-            </div>
+
         </form>
     </div>
 </div>

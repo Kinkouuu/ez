@@ -18,7 +18,7 @@ require_once 'function.php';
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.css"> 
     <title>EZSUPPLY | ADMIN</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../js/app.js"></script>
+    <script src="../js/ajax.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script>
         if (window.history.replaceState) {

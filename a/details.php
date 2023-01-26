@@ -284,7 +284,7 @@ if (isset($_POST['sub'])) {
                     <form action="" method="POST">
                         <label for="">Deposited:</label>
                         <input type="number" name="deposit" value="<?= $details['deposit'] ?>" style="width:30%;">
-                        <button type="submit" class="btn btn-primary" name="sub">VND <i class="fa-solid fa-money-bills"></i></button>
+                        <button type="submit" class="btn btn-success" name="sub">VND <i class="fa-solid fa-money-bills"></i></button>
                     </form>
                 </div>
                 <div class="col-md-2">
