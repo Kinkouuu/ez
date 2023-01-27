@@ -14,9 +14,9 @@ require_once("../control/sidebar.php");
 <!-- Main content -->
 <div class="container">
     <div class="tab-pane" id="settings">
-        <form class="form-horizontal" method="post">
+        <form action="../model/prs_addSM.php" class="form-horizontal" method="POST">
             <div class="form-group row d-flex justify-items-center">
-                <div class="col-sm-6 d-flex">
+                <div class="col-sm-5 d-flex">
                     <label class="col-sm-3 col-form-label">Factory:</label>
                     
                     <div class="col-sm-9">
@@ -33,19 +33,20 @@ require_once("../control/sidebar.php");
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-6 d-flex">
+                <div class="col-sm-5 d-flex">
                     <label class="col-sm-3 col-form-label">Code Shipment:</label>
                     <div class="col-sm-9">
-                       <input type="text" class="form-control" name="code">
-
+                       <input type="text" class="form-control" name="code" required>
                     </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary" name="add"><i class="fa-sharp fa-solid fa-cart-flatbed"></i> ADD</button>
                 </div>
                 <div class="col-sm-12 mt-1" style="height: 70vh;overflow-y:auto">
                                 <?php
-                                require_once("data.php");
+                                require_once("cty_sp.php");
                                 ?>
                 </div>
-
         </form>
     </div>
 </div>

@@ -20,6 +20,8 @@ require_once 'function.php';
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/ajax.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- css chart -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <script>
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);

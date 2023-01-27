@@ -56,7 +56,7 @@ require_once("control/sidebar.php");
                         <h3><?php echo $db->query("SELECT * FROM `statist`")->rowcount(); ?></h3>
                         <p>Revenue Statistic</p>
                     </div>
-                    <a href="product.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="statist.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>  
 
@@ -64,10 +64,11 @@ require_once("control/sidebar.php");
                     <div class="col-md-2">
                 <div class="box" style="background-color: yellow;">
                     <div class="inner">
-                        <h3><?php echo $db->query("SELECT * FROM `product`")->rowcount(); ?></h3>
+                        <h3><?php $us = $db->query("SELECT count(distinct u_id) as us FROM `order`")->fetch();
+                        echo $us['us'] ?></h3>
                         <p>User's Spending</p>
                     </div>
-                    <a href="product.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="spending.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
