@@ -1,6 +1,7 @@
 <?php
 require_once("control/head.php");
 require_once("control/sidebar.php");
+
 ?>
 <div class="container-fluid bg-dark mt-2" style="height: 90vh;">
     <div class="col-md-12">

@@ -1,6 +1,13 @@
 <?php
 require_once("control/head.php");
 require_once("control/sidebar.php");
+
+if (isset($_SESSION['admin'])){
+    $a_id = $_SESSION['admin'];
+    echo $a_id;
+}else{
+    echo '<script>alert("You must log in by admin account"); window.location = "index.php ";</script>';
+}
 ?>
 <div class="container">
     <div class="card">

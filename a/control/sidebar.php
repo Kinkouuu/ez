@@ -1,4 +1,11 @@
-
+<?php
+if (!isset($_SESSION['admin'])){
+  echo '<script>alert("You must login with admin account");window.location = "http:/ez/a/index.php";</script>';
+}else{
+  $a_id = $_SESSION['admin'];
+  echo $a_id;
+}
+?>
 <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; background-color:gray" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large bg-light" onclick="w3_close()">
   <i class="fa-solid fa-users-gear"></i>
