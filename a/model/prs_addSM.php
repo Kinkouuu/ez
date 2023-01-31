@@ -1,5 +1,10 @@
 <?php
 require_once("../control/head.php");
+if (!isset($_SESSION['admin'])){
+    echo '<script>alert("You must login with admin account");window.location = "http:/ez/a/index.php";</script>';
+  }else{
+    $a_id = $_SESSION['admin'];
+  }
 ?>
 
 <?php

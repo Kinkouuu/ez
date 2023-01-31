@@ -1,5 +1,10 @@
 <?php
 require_once("../control/head.php");
+if (!isset($_SESSION['admin'])){
+    echo '<script>alert("You must login with admin account");window.location = "http:/ez/a/index.php";</script>';
+  }else{
+    $a_id = $_SESSION['admin'];
+  }
 ?>
 <?php
 
@@ -61,6 +66,7 @@ if (isset($_POST['save'])) {
                 $name = post('name');
                 $c_id = post('type');
                 $f_id = post('f_id');
+                $sm_id = post('sm_id');
                 $specs = post('spec');
                 $p_gb = post('p_gb');
                 $p_stock = post('p_stock');
@@ -68,10 +74,12 @@ if (isset($_POST['save'])) {
                 $p_10 = post('p_10');
                 $m_id = post('money');
                 $remain = post('remain');
-                $video = post('video');
-                $db->query("INSERT INTO `product` (`p_img`, `p_name`,`f_id`, `c_id`,`specs`,`remain`,`video`) VALUES ('$p_img','$name','$f_id','$c_id','$specs','$remain','$video')");
+                $video = post('video'); 
+
+                $db->query("INSERT INTO `product` (`p_img`, `p_name`,`f_id`,`sm_id`, `c_id`,`specs`,`remain`,`video`) VALUES ('$p_img','$name','$f_id','$sm_id','$c_id','$specs','$remain','$video')");
                 $p_id = $db->lastInsertId();
                 $insert = $db->exec ("INSERT INTO `price` (`p_id`,`m_id`,`p_gb`,`p_stock`,`p_10`,`p_50`) VALUES ('$p_id','$m_id','$p_gb','$p_stock','$p_10','$p_50')");
+                $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thêm sản phẩm mới: ID = $p_id; Product name = $name ') ");
                 echo '<script>alert("Add new product infomation successfully"); window.location = "../product.php ";</script>';
             } else {
                 $msg = 'Image upload failed, please try again after some time.';

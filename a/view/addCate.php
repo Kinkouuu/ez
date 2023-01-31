@@ -3,77 +3,99 @@ require_once("../control/head.php");
 require_once("../control/sidebar.php");
 ?>
 
-<?php
-if (isset($_POST['save'])) {
-    $cate = $_POST['cate'];
-    $type = $_POST['type'];
-
-    $db->query("INSERT INTO `cate` (`cate`, `type`) VALUES ('$cate', '$type')");
-    if ($type == '') {
-        echo '<script>alert("Đã thêm danh mục ' . $cate . '"); window.location = "../cate.php";</script>';
-    } else {
-        echo '<script>alert("Đã thêm loại hàng ' . $type . ' vào danh mục ' . $cate . '"); window.location = "../cate.php";</script>';
-    }
-}
-
-?>
 
 <div class="container mt-3">
-    <form method="POST" action="">
-        <input type="radio" id="addtype" name="subject" value="" class="addType" checked>
-        <label for="">Add type</label>
-        <div class="col-8 d-flex align-items-center">
-            <select class="form-select" name="cate" style="width: 20%; height:100%; margin-right: 5px" aria-label="Default select example">
-                <?php
-                $cates = $db->query("SELECT * FROM `cate` WHERE `type` = '' ORDER BY `c_id` ASC");
-                foreach ($cates as $cate) {
-                ?>
-                    <option value="<?= $cate['cate'] ?>"><?= $cate['cate'] ?></option>
-                <?php } ?>
-            </select>
-            <div class="" style="width: 80%; height:100%;">
-                <input type="text" id="type" class="form-control" name="type" placeholder="Enter type name" required>
+    <div class="row">
+        <form method="POST" action="../model/prs_addCate.php">
+            <div class="col-md-12">
+                <input type="radio" id="other" name="subject" value="direc" class="addDirec">
+                <label for="">Add directory</label>
+                <div class="col-11">
+                    <div class="form-group" style="width: 100%; height:100%;">
+                        <input type="text" id="direc" class="form-control" name="direc" readonly placeholder="Enter directory name" required>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="">
-            <input type="radio" id="other" name="subject" value="" class="addCate">
-            <label for="">Add category</label>
-
-        </div>
-        <div class="col-8">
-            <div class="form-group" style="width: 100%; height:100%;">
-                <input type="text" id="otherlang" class="form-control" name="cate" disabled="disabled" placeholder="Enter category name" required>
+            <div class="col-md-12">
+                <input type="radio" id="addcate" name="subject" value="cate" class="addCate">
+                <label for="">Add category</label>
+                <div class="col-11 d-flex align-items-center">
+                    <select class="form-select direc" name="cdirec" style="width: 40%; height:100%; margin-right: 5px" aria-label="Default select example">
+                        <option value="" class="text-center">--Chose directory--</option>
+                        <?php
+                        $direcs = $db->query("SELECT * FROM `cate` WHERE `type` is null AND `cate` is null ORDER BY `c_id` ASC");
+                        foreach ($direcs as $direc) {
+                        ?>
+                            <option class="text-center" value="<?= $direc['direc'] ?>"><?= $direc['direc'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <div class="" style="width: 60%; height:100%;">
+                        <input type="text" id="cate" class="form-control" readonly value=""  name="cate" placeholder="Enter category name" required>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="mt-1">
-            <button type="submit" name="save" class="btn btn-success">ADD</button>
-        </div>
-    </form>
+
+            <div class="col-md-12">
+                <input type="radio" id="addtype" name="subject" value="type" class="addType" checked>
+                <label for="">Add type</label>
+                <div class="col-md-11 d-flex align-items-center">
+                    <select class="form-select" id="tdirec" name="tdirec" style="width: 20%; height:100%; margin-right: 5px" aria-label="Default select example">
+                        <option value="" class="text-center">--Chose directory--</option>
+                        <?php
+                        $direcs = $db->query("SELECT * FROM `cate` WHERE `type` is null AND `cate` is null ORDER BY `c_id` ASC");
+
+                        foreach ($direcs as $direc) {
+                        ?>
+                            <option class="text-center" value="<?= $direc['direc'] ?>"><?= $direc['direc'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <select class="form-select" name="tcate" id="tcate" style="width: 20%; height:100%; margin-right: 5px" aria-label="Default select example">
+                        <option value="" class="text-center">--Chose category--</option>
+                        
+                    </select>
+                    <div class="" style="width: 60%; height:100%;">
+                        <input type="text" id="type" class="form-control" name="type" placeholder="Enter type name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-1">
+                <button type="submit" name="save" class="btn btn-success">ADD</button>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
     $("input[name='subject']").click(function() {
-        $("#otherlang").prop("disabled", true);
-        $('#otherlang').val("");
-        if ($(this).hasClass('addCate')) {
-            $("#otherlang").prop("disabled", false);
+        $("#direc").prop("readonly", true); //ko click thi disable
+        $('#direc').val("");
+        if ($(this).hasClass('addDirec')) {
+            $("#direc").prop("readonly", false); // click vao thi able
         }
     });
 
     $("input[name='subject']").click(function() {
-        $("#type").prop("readonly", true);
+        $("#cate").prop("readonly", true); //ko click thi disable
+        $('#cate').val("");
+        if ($(this).hasClass('addCate')) {
+            $("#cate").prop("readonly", false); // click vao thi able
+        }
+    });
+
+
+    $("input[name='subject']").click(function() {
+        $("#type").prop("readonly", true); //ko click thi disable
         $('#type').val("");
         if ($(this).hasClass('addType')) {
-            $("#type").prop("readonly", false);
+            $("#type").prop("readonly", false); // click vao thi able
         }
     });
 </script>
-<gwmw style="display:none;">
-    <gwmw style="display:none;"></gwmw>
-</gwmw>
+
 </div>
 
 <?php

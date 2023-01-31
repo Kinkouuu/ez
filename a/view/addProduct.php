@@ -3,7 +3,7 @@ require_once '../control/head.php';
 require_once '../control/sidebar.php';
 ?>
 <!-- Content Header (Page header) -->
-<div class="container">
+<div class="container-fluid">
     <h2>Add new product</h2>
     <?php
     if (isset($_GET['msg'])) {
@@ -13,53 +13,70 @@ require_once '../control/sidebar.php';
     <div class="col-md-12">
         <div class="row">
             <form action="../model/prs_addProduct.php" method="POST" enctype="multipart/form-data">
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Name Product</label>
-                    <div class="col-sm-10">
+                <div class="form-group row mb-2">
+                    <label class="col-sm-1 col-form-label">Name Product</label>
+                    <div class="col-sm-5">
                         <div class="form-group">
                             <input name="name" type="text" class="form-control" placeholder="Enter name product" required>
                         </div>
                     </div>
-                </div>
-                <div class="form-group d-flex justify-content-between">
-                    <div class="d-flex align-items-center" style="width:30%">
-                        <label class="col-sm-2 col-form-label">Type</label>
-                        <div class="col-sm-10" style="width: 100%;margin-left:1rem">
-                            <select name="type" class="custom-select browser-default select2" required>
-                                <?php
-                                $types = $db->query("SELECT * FROM `cate` WHERE `type` !='' ORDER BY `c_id` ASC");
-                                foreach ($types as $type) {
-                                ?>
-                                    <option selected value="<?= $type['c_id'] ?>">
-                                        <?= $type['type'] ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center" style="width:30%">
-                        <label>Factory</label>
-                        <div class="" style="width: 100%;margin-left:1rem">
-                            <select name="f_id" class="custom-select browser-default select2" required>
-                                <?php
-                                $factorys = $db->query("SELECT * FROM `factory` order by `f_id` asc");
-                                foreach ($factorys as $factory) {
-                                ?>
-                                    <option value="<?php echo $factory['f_id'] ?>">
-                                        <?= $factory['f_name']; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center" style="width:30%">
+                    <label class="col-sm-1 col-form-label">Image</label>
+                    <div class="col-sm-5">
                         <div class="form-group">
-                            <label>Image</label>
                             <input type="file" name="image">
                         </div>
                     </div>
+                </div>
+                <div class="form-group d-flex justify-content-between mb-2">
+                    <div class="col-sm-6 d-flex align-items-center">
+                        <label class="col-sm-1 col-form-label">Type</label>
+                        <div class="col-sm-11 d-flex" style="width: 90%;margin-left:1rem">
+                            <select class="form-select" id="tdirec" name="tdirec" style="width: 30%; height:100%; margin-right: 5px" aria-label="Default select example" required>
+                                <option value="" class="text-center"><--Choose directory--></option>
+                                <?php
+                                $direcs = $db->query("SELECT * FROM `cate` WHERE `type` is null AND `cate` is null ORDER BY `c_id` ASC");
+
+                                foreach ($direcs as $direc) {
+                                ?>
+                                    <option class="text-center" value="<?= $direc['direc'] ?>"><?= $direc['direc'] ?></option>
+                                <?php } ?>
+                            </select>
+                            <select class="form-select" name="tcate" id="tcate" style="width: 30%; height:100%; margin-right: 5px" aria-label="Default select example" required>
+                                <option value="" class="text-center"><--Choose category--></option>
+
+                            </select>
+                            <select class="form-select" name="type" id="type" style="width: 30%; height:100%; margin-right: 5px" aria-label="Default select example" required>
+                                <option value="" class="text-center"><--Choose type--></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class=" col-sm-3 d-flex align-items-center">
+                        <label class="col-sm-2 ">Factory</label>
+                        <div class="col-sm-9">
+                            <select class="form-select" name="f_id" id = "fact" class="custom-select browser-default select2" required>
+                                <option value="" class="text-center"><--Choose factory--></option>
+                                <?php
+                                $facts = $db->query("SELECT * FROM `factory` order by `f_id` asc");
+                                foreach ($facts as $fact) {
+                                ?>
+                                    <option value="<?= $fact['f_id'] ?>">
+                                        <?= $fact['f_name']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 d-flex align-items-center">
+                        <label class="col-sm-2">Shipment</label>
+                        <div class="col-sm-9">
+                            <select class="form-select" name="sm_id" id="smt" class="custom-select browser-default" required>
+                            <option value="" class="text-center"><--Choose shipment--></option>
+                            </select>
+                        </div>
+                    </div>
+
 
                 </div>
 

@@ -133,7 +133,7 @@ require_once("control/sidebar.php");
                         <h3><?php echo $db->query("SELECT * FROM `history`")->rowcount(); ?></h3>
                         <p>Operation History</p>
                     </div>
-                    <a href="product.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="history.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>

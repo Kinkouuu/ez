@@ -5,10 +5,11 @@ require_once("control/sidebar.php");
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Order
+            <h3 class="card-title">Order</h3>
+            <button class="btn btn-outline-success" id="export"><i class="fa-solid fa-file-export"></i> Export</button>
         </div>
         <div class="card-body p-0 overflow-auto">
-            <table class="table table-striped  table-hover">
+            <table class="table table-striped  table-hover" id="dataList">
                 <thead>
                     <tr>
                         <th>
@@ -172,6 +173,12 @@ require_once("control/sidebar.php");
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('export').addEventListener('click', function() {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#dataList"));
+    });
+</script>
 <?php
 require_once("control/end.php");
 ?>

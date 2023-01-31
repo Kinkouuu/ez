@@ -7,42 +7,41 @@ require_once("control/sidebar.php");
         <div class="card-header">
             <h3 class="card-title">Product | <a href="view/addProduct.php" style="text-decoration: none; color:cornflowerblue"><i class="fas fa-folder-plus"></i> ADD</a></h3>
         </div>
-        <div class="card-body p-0 overflow-auto">
-            <table class="table table-striped  table-hover">
+        <div class="card-body p-0 overflow-auto" style="overflow-x:auto;">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th style="width: 1% ;">
+                        <th>
                             #
                         </th>
-                        <th style="width: 10% ;">
+                        <th>
                             Picture
                         </th>
-                        <th style="width: 3% ;">
+                        <th>
                             Name
                         </th>
-                        <th style="width: 3% ;">
-                            Category
-                        </th>
-                        <th style="width: 3% ;">
+                        <th>
                             Type
                         </th>
-
-                        <th style="width: 10% ;">
+                        <th>
+                            Shipment
+                        </th>
+                        <th style="width: 120px;">
                             Price
                         </th>
-                        <th style="width: 10% ;">
+                        <th>
                             Increase
                         </th>
-                        <th style="width: 5% ;">
+                        <th>
                             Remain
                         </th>
-                        <th style="width: 5% ;">
+                        <th>
                             Factory
                         </th>
-                        <th style="width: 35% ;">
+                        <th>
                             Specification
                         </th>
-                        <th style="width: 15% ;">
+                        <th>
                             Review
                         </th>
                         <th>
@@ -60,47 +59,32 @@ require_once("control/sidebar.php");
                             <td>
                                 <?= $pro['p_id']; ?>
                             </td>
-                            <td>
+                            <td  style="width: 200px;">
                                 <img src="<?= $pro['p_img']; ?>" alt="" style="width: 100%;">
                             </td>
                             <td>
                                 <?= $pro['p_name']; ?>
-                            </td>
-                            <td>
-                                <?= $pro['cate']; ?>
-                            </td>
-                            <td>
-                                <?= $pro['type']; ?>
-                            </td>
-                            <td>
-                                <table class="table table-striped  table-hover">
-                                    <tr >
-                                        <td>
-                                            GB: <br> <?= $pro['p_gb'];  ?> <?= $pro['sign']; ?> </br>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Stock: <br><?= $pro['p_stock']; ?> VND</br>
-                                        </td>
-                                    </tr>
-                                </table>
 
                             </td>
                             <td>
-                                <table class="table table-striped  table-hover">
+                                - <br><?= $pro['direc']; ?> <br> -- <br><?= $pro['cate']; ?> <br> --- <br><?= $pro['type']; ?>
+                            </td>
+                            <td>
+                                <?php 
+                                    $sm_id = $pro['sm_id'];
+                                    $sm = $db->query("SELECT * FROM `shipment` WHERE `sm_id` = '$sm_id'")->fetch();
+                                    echo $sm['sm_code'];
+                                ?>
+                            </td>
 
-                                    <tr>
-                                        <td>
+                            <td>
+                                            GB: <br><?= $pro['p_gb']  ?> <?= $pro['sign']; ?> <br>
+                                            Stock:<br><?= $pro['p_stock'] ." VND" ?>
+                            </td>
+                            <td>
                                             50%: <br>+<?= $pro['p_50']; ?> VND</br>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
+
                                             10%: <br>+<?= $pro['p_10']; ?> VND</br>
-                                        </td>
-                                    </tr>
-                                </table>
                             </td>
                             <td>
                                 <?= $pro['remain']; ?>

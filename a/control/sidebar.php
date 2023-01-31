@@ -3,7 +3,6 @@ if (!isset($_SESSION['admin'])){
   echo '<script>alert("You must login with admin account");window.location = "http:/ez/a/index.php";</script>';
 }else{
   $a_id = $_SESSION['admin'];
-  echo $a_id;
 }
 ?>
 <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; background-color:gray" id="mySidebar">
@@ -14,32 +13,32 @@ if (!isset($_SESSION['admin'])){
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#0c56f5"></i>
-            <a href="#" class="nav-link" style="color:#0c56f5">Products
+            <a href="http://localhost/ez/a/product.php" class="nav-link" style="color:#0c56f5">Products
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#628ff0"></i>
-            <a href="#" class="nav-link" style="color:#628ff0">Users
+            <a href="http://localhost/ez/a/user.php" class="nav-link" style="color:#628ff0">Users
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#1ff2ef"></i>
-            <a href="#" class="nav-link" style="color:#1ff2ef">Orders
+            <a href="http://localhost/ez/a/order.php" class="nav-link" style="color:#1ff2ef">Orders
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle"  style="color:#69f051" ></i>
-            <a href="#" class="nav-link"  style="color:#69f051">Currency Exchange
+            <a href="http://localhost/ez/a/money.php" class="nav-link"  style="color:#69f051">Currency Exchange
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:lime"></i>
-            <a href="#" class="nav-link" style="color:lime">Revenue Statistics
+            <a href="http://localhost/ez/a/statist.php" class="nav-link" style="color:lime">Revenue Statistics
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:yellow"></i>
-            <a href="#" class="nav-link" style="color:yellow">User's Spending
+            <a href="http://localhost/ez/a/spending.php" class="nav-link" style="color:yellow">User's Spending
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
@@ -54,22 +53,22 @@ if (!isset($_SESSION['admin'])){
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:pink"></i>
-            <a href="#" class="nav-link" style="color:pink">Voucher Discount
+            <a href="http://localhost/ez/a/sale.php" class="nav-link" style="color:pink">Voucher Discount
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#f097a4"></i>
-            <a href="#" class="nav-link" style="color:#f097a4">Start Soucing
+            <a href="http://localhost/ez/a/sourcing.php" class="nav-link" style="color:#f097a4">Start Soucing
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#eb3852"></i>
-            <a href="#" class="nav-link" style="color:#eb3852">Shipment
+            <a href="http://localhost/ez/a/shipment.php" class="nav-link" style="color:#eb3852">Shipment
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:red" ></i>
-            <a href="#" class="nav-link" style="color:red">Logout
+            <a href="http://localhost/ez/a/logout.php" class="nav-link" style="color:red">Logout
             </a>
         </li>
       </ul>
