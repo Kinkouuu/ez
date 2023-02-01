@@ -95,7 +95,7 @@ require_once '../control/sidebar.php';
                     <div class="col-sm-2">
                         <div class="input-group">
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="p_gb" placeholder="In GB" required>
+                                <input type="number" step="0.01" class="form-control" name="p_gb" placeholder="In GB" required>
                             </div>
                             <div class="col-sm-4">
                                 <select class="input-group-text" name="money" aria-label="Default select example">

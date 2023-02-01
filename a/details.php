@@ -181,14 +181,13 @@ if (isset($_POST['sub'])) {
                                     ?>
                                 </td>
                                 <td>
-                                    <?php $sm_id = $tt['sm_id']; // lay thong tin lo hang
-                                    if ($sm_id != 0) {
-                                        $lo = $db->query("SELECT * FROM `shipment` WHERE `sm_id` = $sm_id")->fetch();
+                                    <?php 
+                                                    $sm = $db ->query("SELECT * FROM `details` WHERE `id` = '$id'")->fetch();
+                                                    $sm_id = $sm['sm_id'];
+                                                    $lo = $db->query("SELECT * FROM `shipment` WHERE `sm_id` = '$sm_id'")->fetch();
                                     ?>
-                                        <a href="shipment.php?sm_id=<?= $sm_id ?>"> <?= $lo['sm_code'] ?>#<?= $sm_id ?></a>
-                                    <?php
-                                    }
-                                    ?>
+                                        <a href="view/addSMList.php?sm_id=<?= $lo['sm_id'] ?>"><?=  $lo['sm_code'] ?>#<?=  $lo['sm_id'] ?></a>
+
                                 </td>
                             </tr>
                             <!-- dien thong tin -->

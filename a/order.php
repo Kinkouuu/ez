@@ -6,7 +6,7 @@ require_once("control/sidebar.php");
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Order</h3>
-            <button class="btn btn-outline-success" id="export"><i class="fa-solid fa-file-export"></i> Export</button>
+            <a href="viewOrder.php" class="btn btn-outline-success"><i class="fa-solid fa-memo-circle-info"></i>View all</a>
         </div>
         <div class="card-body p-0 overflow-auto">
             <table class="table table-striped  table-hover" id="dataList">
@@ -62,7 +62,7 @@ require_once("control/sidebar.php");
                 </thead>
                 <tbody>
                     <?php
-                    $order = $db->query("SELECT * FROM `order` ORDER BY `order`.o_id"); // lay thong tin dat hang
+                    $order = $db->query("SELECT * FROM `order` ORDER BY `order`.o_id DESC"); // lay thong tin dat hang
                     foreach ($order as $o) {
                         $o_id = $o['o_id'];
                         $sum = 0;
@@ -74,7 +74,7 @@ require_once("control/sidebar.php");
                             <td colspan="3">
                                 <table class="table table-bordered text-center">
                                     <?php
-                                    $detail = $db->query("SELECT * FROM `details` INNER JOIN `product` ON `details`.p_id = `product`.p_id WHERE `details`.o_id = '$o_id'");
+                                    $detail = $db->query("SELECT * FROM `details` INNER JOIN `product` ON `details`.p_id = `product`.p_id WHERE `details`.o_id = '$o_id' ");
                                     foreach ($detail as $d) { // thông tin chi tiet don hang
                                         $id = $d['id'];
 

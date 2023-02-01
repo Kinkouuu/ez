@@ -43,7 +43,7 @@ $sm = $db->query("SELECT * FROM `shipment` INNER JOIN `factory` ON `shipment`.f_
                     <div class="col-sm-3 me-4">
                         <div class="form-group d-flex mb-1">
                             <label for="" style="width: 28%;">Import price: </label>
-                            <input type="number" class="form-control" name="sm_price" style="width: 50%;" min="0" value="<?= $row['sm_price'] ?>">
+                            <input type="number" step=".01" class="form-control" name="sm_price" style="width: 50%;" min="0" value="<?= $row['sm_price'] ?>">
                             <select name="m_id" class="form-select" id="" style="width: 22%;">
                                 <?php
                                 if ($m_id == 0) {
@@ -134,7 +134,8 @@ $sm = $db->query("SELECT * FROM `shipment` INNER JOIN `factory` ON `shipment`.f_
                         $sth += $dem['amount'] * $dem['d_price'];
                         $fee += $dem['fee'];
                         $ship += $dem['ship'];
-                        if ($dem['s_id'] != 0) {
+                        // echo $dem['id'] ."=".$dem['s_id'].",";
+                        if ($dem['s_id'] != '0') {
                             $s_id = $dem['s_id'];
                             $sale = $db->query("SELECT `discount` FROM `sale` WHERE `s_id` = '$s_id'")->fetch();
                             $discount += $sale['discount'];

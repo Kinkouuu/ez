@@ -21,8 +21,10 @@ if(isset($_POST['save'])){
     $ex_date = post('ex_date');
     $im_date = post('im_date');
     $hn_date = post('hn_date');
-    $db->exec("UPDATE `sm_list` SET `sm_price` = '$sm_price', `m_id` = '$m_id',`ex_price` = '$ex_price',`sm_amount` = '$sm_amount',`gate_ship`= '$gate_ship',`hn_ship`='$hn_ship',`sm_date`='$sm_date',`pay_date`='$pay_date',`ex_date`='$ex_date',`im_date`='$im_date',`hn_date`='$hn_date' WHERE `sm_id` = '$sm_id' AND `p_id` = '$p_id'");
-    header("location: ../view/addSMList.php?sm_id=$sm_id");
+    // echo $sm_price;
+  $up =   $db->exec("UPDATE `sm_list` SET `sm_price` = '$sm_price', `m_id` = '$m_id',`ex_price` = '$ex_price',`sm_amount` = '$sm_amount',`gate_ship`= '$gate_ship',`hn_ship`='$hn_ship',`sm_date`='$sm_date',`pay_date`='$pay_date',`ex_date`='$ex_date',`im_date`='$im_date',`hn_date`='$hn_date' WHERE `sm_id` = '$sm_id' AND `p_id` = '$p_id'");
+  // var_export($up);  
+  header("location: ../view/addSMList.php?sm_id=$sm_id");
 }
 
 ?>
