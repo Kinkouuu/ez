@@ -8,11 +8,12 @@ $s_id = get('s_id');
 $ds = $db->query("SELECT * FROM `sale` WHERE `s_id` = '$s_id'")->fetch();
 //them nguoi dung vao danh sach
 if (isset($_GET['addUser'])) {
-    $a_id = get('addUser');
+    $add_id = get('addUser');
     // echo $s_id. "$" . $a_id;
-    $count = $db->query("SELECT * FROM `sale_user` WHERE `s_id` = '$s_id' AND `u_id` = '$a_id'")->rowCount();
+    $count = $db->query("SELECT * FROM `sale_user` WHERE `s_id` = '$s_id' AND `u_id` = '$add_id'")->rowCount();
     if ($count == 0) {
-        $db->exec("INSERT INTO `sale_user` (`s_id`, `u_id`,`max`) VALUES ( '$s_id', '$a_id','1')");
+        $db->exec("INSERT INTO `sale_user` (`s_id`, `u_id`,`max`) VALUES ( '$s_id', '$add_id','1')");
+        $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', 'Đã thêm người dùng `ID = $add_id` vào danh sách dùng mã giảm giá `ID = $s_id`')");
         echo '<script> window.location = "../view/addSaleList.php?s_id=' . $s_id . ' "; </script>';
     } else {
         echo '<script>alert("This user has been added in sale list");window.location = "?s_id=' . $s_id . ' "; </script>';
@@ -22,6 +23,7 @@ if (isset($_GET['addUser'])) {
 if (isset($_GET['rmvUser'])) {
     $r_id =  get('rmvUser');
     $db->exec("DELETE FROM `sale_user` WHERE `s_id` = '$s_id' AND `u_id` = '$r_id';");
+    $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', 'Đã thêm xóa dùng `ID = $r_id` khỏi danh sách dùng mã giảm giá `ID = $s_id`')");
     echo '<script>window.location = "?s_id=' . $s_id . ' "; </script>';
 }
 

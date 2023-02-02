@@ -16,8 +16,10 @@ if (isset($_POST['add'])) {
     if(isset($_POST['addSP'])){
         $db->exec("INSERT INTO `shipment` (`f_id`,`sm_code`) VALUES ('$f_id','$sm_code')");
         $sm_id = $db->lastInsertId();
+        $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thêm lô hàng mới `ID = $sm_id- #$sm_code` ')");
         foreach($_POST['addSP'] as $sp){
         $db->exec("INSERT INTO `sm_list` (`sm_id`,`p_id`) VALUES ('$sm_id','$sp')");
+        $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thêm sản phẩm `$sp` vào lô hàng `ID = $sm_id- #$sm_code` ')");
         echo '<script>alert("Add new shipment successfull"); window.location = "../shipment.php ";</script>';
         }
     }else{

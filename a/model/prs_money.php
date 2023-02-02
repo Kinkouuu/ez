@@ -13,6 +13,7 @@ if (!isset($_SESSION['admin'])){
         $sign = post('sign');
         $ex = post('ex');
         $db->exec("INSERT INTO `money`  (`m_name`,`sign`,`ex`) VALUES ( '$cur','$sign','$ex');");
+        $db-exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thêm loại tiền tệ mới `1 $sign = $ex VND`')");
         echo '<script>alert("Đã thêm ' . $cur . '"); window.location = "../money.php";</script>';
     }
 ?>

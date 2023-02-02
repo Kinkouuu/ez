@@ -15,6 +15,19 @@ if(isset($_POST['save'])){
     $a_note = post('a_note');
     $stt = post('stt');
     $sent = post('sent');
+    $check = $db->query("SELECT * FROM `details` WHERE `id` = '$id'")->fetch();
+    if($cost != $check['ship']){
+      $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', Đã cập nhật phí ship cost đơn hàng `$id` thành `$cost`')");
+    }
+    if($a_note != $check['note']){
+      $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', Đã cập nhật ghi chứ đơn hàng `$id` thành `$a_note`')");
+    }
+    if($stt != $check['stt']){
+      $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', Đã cập nhật trạng thái đơn hàng `$id` thành `$stt`')");
+    }
+    if($sent != $check['d_date']){
+      $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', Đã cập nhật ngày gửi đơn hàng `$id` thành `$sent`')");
+    }
     if($stt == 'Đã giao hàng'){
         $db->exec("UPDATE `details` SET `ship` = '$cost',`stt`= '$stt', `a_note` = '$a_note', `d_date` = '$sent',`d_day` = '$today' WHERE `id` = '$id'");
         // var_dump($up);

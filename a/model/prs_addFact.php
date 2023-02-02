@@ -52,7 +52,6 @@ if(isset($_POST['save'])){
             if(!empty($responseArr->data->link)){ 
                 $imgurData = $responseArr; 
                 $img = $imgurData->data->link;
-                
                 $name = post('name');
                 $mail = post('mail');
                 $phone = post('phone');
@@ -66,6 +65,8 @@ if(isset($_POST['save'])){
                 $nation = post('nation');
                 $license = post('license');
                 $db->exec("INSERT INTO `factory` (`f_name`, `f_img`,`f_mail`, `f_phone`, `represent`,`rep_phone`,`f_no`,`f_street`,`f_ward`,`f_district`,`f_city`,`f_nation`,`license`) VALUES ('$name','$img','$mail','$phone','$represent','$rep_phone','$no','$street','$ward','$district','$city','$nation','$license')" );
+                $f_id = $db->lastInsertId();
+                $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES('$a_id','Đã thêm nhà cung cấp `$f_id - $name` '");
                 echo '<script>alert("Add new fatory infomation successfully"); window.location = "../factory.php ";</script>';
             }else{ 
                 $msg = 'Image upload failed, please try again after some time.';
