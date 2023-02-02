@@ -9,7 +9,7 @@ require_once("control/sidebar.php");
             <a href="viewOrder.php" class="btn btn-outline-success"><i class="fa-solid fa-memo-circle-info"></i>View all</a>
         </div>
         <div class="card-body p-0 overflow-auto">
-            <table class="table table-striped  table-hover" id="dataList">
+            <table class="table table-striped  table-hover">
                 <thead>
                     <tr>
                         <th>

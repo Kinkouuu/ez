@@ -68,7 +68,10 @@ require_once("../control/sidebar.php");
             <div class="form-group row  mb-1">
                 <label class="col-sm-2 col-form-label">Address</label>
                 <div class="col-sm-10 d-flex">
-                    <div class="col-sm-3 me-1">
+                <div class="col-sm-2 me-1">
+                        <input name="no" type="text" class="form-control" placeholder="No." required>
+                    </div>
+                    <div class="col-sm-2 me-1">
                         <input name="street" type="text" class="form-control" placeholder="Street" required>
                     </div>
                     <div class="col-sm-2 me-1">
@@ -80,7 +83,7 @@ require_once("../control/sidebar.php");
                     <div class="col-sm-2 me-1">
                         <input name="city" type="text" class="form-control" placeholder="City" required>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <input name="nation" type="text" class="form-control" placeholder="Nation" required>
                     </div>
                 </div>

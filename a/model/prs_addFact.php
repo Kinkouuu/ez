@@ -58,13 +58,14 @@ if(isset($_POST['save'])){
                 $phone = post('phone');
                 $represent = post('represent');
                 $rep_phone = post('rep_phone');
+                $no = post('no');
                 $street = post('street');
                 $ward = post('ward');
                 $district = post('district');
                 $city = post('city');
                 $nation = post('nation');
                 $license = post('license');
-                $db->exec("INSERT INTO `factory` (`f_name`, `f_img`,`f_mail`, `f_phone`, `represent`,`rep_phone`,`f_street`,`f_ward`,`f_district`,`f_city`,`f_nation`,`license`) VALUES ('$name','$img','$mail','$phone','$represent','$rep_phone','$street','$ward','$district','$city','$nation','$license')" );
+                $db->exec("INSERT INTO `factory` (`f_name`, `f_img`,`f_mail`, `f_phone`, `represent`,`rep_phone`,`f_no`,`f_street`,`f_ward`,`f_district`,`f_city`,`f_nation`,`license`) VALUES ('$name','$img','$mail','$phone','$represent','$rep_phone','$no','$street','$ward','$district','$city','$nation','$license')" );
                 echo '<script>alert("Add new fatory infomation successfully"); window.location = "../factory.php ";</script>';
             }else{ 
                 $msg = 'Image upload failed, please try again after some time.';
