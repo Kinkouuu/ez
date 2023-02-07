@@ -32,7 +32,7 @@ require_once '../control/sidebar.php';
                         <label class="col-sm-1 col-form-label">Type</label>
                         <div class="col-sm-11 d-flex" style="width: 90%;margin-left:1rem">
                             <select class="form-select" id="tdirec" name="tdirec" style="width: 30%; height:100%; margin-right: 5px" aria-label="Default select example" required>
-                                <option value="" class="text-center"><--Choose directory--></option>
+                                <option value="" class="text-center">--Choose directory--</option>
                                 <?php
                                 $direcs = $db->query("SELECT * FROM `cate` WHERE `type` is null AND `cate` is null ORDER BY `c_id` ASC");
 
@@ -42,11 +42,11 @@ require_once '../control/sidebar.php';
                                 <?php } ?>
                             </select>
                             <select class="form-select" name="tcate" id="tcate" style="width: 30%; height:100%; margin-right: 5px" aria-label="Default select example" required>
-                                <option value="" class="text-center"><--Choose category--></option>
+                                <option value="" class="text-center">--Choose category--</option>
 
                             </select>
                             <select class="form-select" name="type" id="type" style="width: 30%; height:100%; margin-right: 5px" aria-label="Default select example" required>
-                                <option value="" class="text-center"><--Choose type--></option>
+                                <option value="" class="text-center">--Choose type--</option>
                             </select>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ require_once '../control/sidebar.php';
                         <label class="col-sm-2 ">Factory</label>
                         <div class="col-sm-9">
                             <select class="form-select" name="f_id" id = "fact" class="custom-select browser-default select2" required>
-                                <option value="" class="text-center"><--Choose factory--></option>
+                                <option value="" class="text-center">--Choose factory--</option>
                                 <?php
                                 $facts = $db->query("SELECT * FROM `factory` order by `f_id` asc");
                                 foreach ($facts as $fact) {
@@ -72,7 +72,7 @@ require_once '../control/sidebar.php';
                         <label class="col-sm-2">Shipment</label>
                         <div class="col-sm-9">
                             <select class="form-select" name="sm_id" id="smt" class="custom-select browser-default" required>
-                            <option value="" class="text-center"><--Choose shipment--></option>
+                            <option value="" class="text-center">--Choose shipment--</option>
                             </select>
                         </div>
                     </div>
@@ -115,14 +115,21 @@ require_once '../control/sidebar.php';
                             <span class="input-group-text">VND</span>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                        <span class="input-group-text">x</span>
+                            <input type="number" step="0.01" min="0.01" class="form-control" name="factor" placeholder="Coefficient" required>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
                         <div class="input-group">
                             <span class="input-group-text">+</span>
                             <input type="number" class="form-control" name="p_50" placeholder="When deposit 50%">
                             <span class="input-group-text">VND</span>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="input-group">
                             <span class="input-group-text">+</span>
                             <input type="number" class="form-control" name="p_10" placeholder="When deposit 10%">

@@ -123,7 +123,7 @@ if (isset($_POST['sub'])) {
                                 }
                                 ?>
                                 <td style="width:15%;">
-                                    <img src="<?php echo $tt['p_img'] ?>" alt="">
+                                    <img src="<?php echo $tt['p_img'] ?>" alt="" style="width: 100%;">
                                 </td>
                                 <td>
                                     <?= $tt['p_name'] ?>

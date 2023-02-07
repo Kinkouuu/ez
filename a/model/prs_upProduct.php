@@ -86,6 +86,7 @@ if (isset($_POST['submit'])) {
                 $m_id = post('m_id');
                 $remain = post('remain');
                 $video = post('video');
+                $factor = post('factor');
                 $check = $db->query("SELECT * FROM (`product` INNER JOIN `price` ON `product`.p_id = `price`.p_id) INNER JOIN `money` ON `price`.m_id = `money`.m_id WHERE `product`.p_id = '$p_id'")->fetch();
 
                 if($name != $check['p_name']){
@@ -119,6 +120,9 @@ if (isset($_POST['submit'])) {
                 }if($p_10 != $check['p_10']){
                     $p10 = $check['p_10'];
                     $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thay đổi giá gia tăng 10% của sản phẩm `$p_id - $name` từ `$p10` VND thành `$p_10` VND')");
+                }if($factor != $check['factor']){
+                        $hs = $check['factor'];
+                        $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thay đổi hệ số giá của sản phẩm `$p_id - $name` từ `$hs` thành `$factor`')");
                 }if($remain != $check['remain']){
                     $con= $check['remain'];
                     $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thay đổi số lượng của sản phẩm `$p_id - $name` từ `$con` thành `$remain`')");
@@ -126,7 +130,7 @@ if (isset($_POST['submit'])) {
                     $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thay đổi link review của sản phẩm `$p_id - $name` thành `$video`')");
                 }
                 $db->exec("UPDATE `product` SET `p_name` = '$name', `c_id` = '$c_id',`sm_id` = '$sm_id', `f_id` = '$f_id',`p_img` = '$p_img', `specs` = '$specs',`remain` = '$remain',`video` = '$video' WHERE `p_id` = '$p_id'");
-                $db->query("UPDATE `price` SET `p_gb` = '$p_gb',`p_stock` = '$p_stock',`p_50` = '$p_50',`p_10` = '$p_10' WHERE `p_id` = '$p_id'");
+                $db->query("UPDATE `price` SET `p_gb` = '$p_gb',`p_stock` = '$p_stock',`p_50` = '$p_50',`p_10` = '$p_10',`factor` ='$factor' WHERE `p_id` = '$p_id'");
                 //  var_dump($up);
                 echo '<script>alert("Update product\'s infomation successfully"); window.location = "../view/upProduct.php?p_id= '.$p_id.' ";</script>';
 }

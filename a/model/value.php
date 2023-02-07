@@ -6,7 +6,7 @@ require_once '../control/head.php';
 if(isset($_POST['nganh'])){
     $tmp = post('nganh'); 
     ?>
-    <option value="" class="text-center"><--Choose category--></option>
+    <option value="" class="text-center">--Choose category--</option>
     <?php
         $cates = $db->query("SELECT * FROM `cate` WHERE `direc` = '$tmp' AND `cate` is not null AND `type` is null"); //select danh muc thuoc nganh hang
     foreach ( $cates as $cate ){

@@ -24,7 +24,7 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-sm-6 d-flex align-items-center">
-                    <label for="" class="col-sm-2">Factory:</label>
+                        <label for="" class="col-sm-2">Factory:</label>
                         <select class="form-select" name="f_id" id="fact">
                             <option value="<?= $p['f_id'] ?>"><?= $p['f_name'] ?></option>
                             <?php
@@ -37,7 +37,7 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                         </select>
                     </div>
                     <div class="col-sm-6 d-flex align-items-center">
-                    <label for="" class="col-sm-2">Shipment:</label>
+                        <label for="" class="col-sm-2">Shipment:</label>
                         <select class="form-select" name="smt" id="smt">
                             <option value="<?= $p['sm_id'] ?>"><?= $p['sm_code'] ?></option>
                             <?php
@@ -56,9 +56,9 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                     </div>
                 </div>
                 <div class="form-group row mb-3">
-                <div class="col-sm-6 d-flex align-items-center">
+                    <div class="col-sm-6 d-flex align-items-center">
 
-                <label class="col-sm-2">Type:</label>
+                        <label class="col-sm-2">Type:</label>
 
                         <select class="form-select" id="tdirec" name="tdirec">
                             <option value="<?= $p['direc'] ?>" class="text-center"><?= $p['direc'] ?></option>
@@ -96,34 +96,32 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                             }
                             ?>
                         </select>
-                </div>
-                <div class="col-sm-6 d-flex align-items-center">
-                <div class="col-sm-2">Link review: 
+                    </div>
+                    <div class="col-sm-6 d-flex align-items-center">
+                        <div class="col-sm-2">Link review:
 
-                </div>
+                        </div>
                         <input type="url" class="form-control" name="video" value="<?= $p['video'] ?>">
 
-                </div>
+                    </div>
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-sm-6 d-flex align-items-center">
-                        <label class="col-sm-2" for="">Image:</label> 
+                        <label class="col-sm-2" for="">Image:</label>
                         <a href="<?= $p['p_img'] ?>"><?= $p['p_img'] ?></a>
                         <input type="text" name="p_img" hidden value="<?= $p['p_img'] ?>">
                         <input type="file" name="image" class="inputfile" data-multiple-caption="{count} files selected" multiple />
                     </div>
                     <div class="col-sm-6 d-flex align-items-center">
-                       <label for="" class="col-sm-2">Remain:</label>
+                        <label for="" class="col-sm-2">Remain:</label>
                         <input type="number" class="form-control" name="remain" value="<?= $p['remain'] ?>">
                     </div>
-
                 </div>
-
                 <div class="form-group row mb-3">
                     <div class="col-sm-1">
                         Specification:
                     </div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-11">
                         <div class="form-floating">
                             <textarea class="form-control" name="specs" id="floatingTextarea" style="height: calc(10em + 2px);" required><?= $p['specs'] ?></textarea>
                             <label for="floatingTextarea" style="color:grey">Start with "-" when entering a new line</label>
@@ -132,13 +130,13 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                 </div>
                 <div class="form-group row mb-3">
                     <label class="col-sm-1 col-form-label">Price:</label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="input-group">
-                            <div class="col-sm-8">
+                            <div class="col-sm-7">
                                 <input type="number" class="form-control" name="p_gb" placeholder="In GB" value="<?= $p['p_gb'] ?>" required>
                             </div>
-                            <div class="col-sm-4">
-                                <select class="input-group-text" name="m_id" aria-label="Default select example">
+                            <div class="col-sm-5">
+                                <select class="input-group-text" name="m_id" aria-label="Default select example" style="width: 100%;text-align:center">
                                     <option value="<?= $p['m_id'] ?>"><?= $p['sign'] ?></option>
                                     <?php
                                     $sm_id = $p['m_id'];
@@ -157,17 +155,24 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                             <span class="input-group-text">VND</span>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                        <span class="input-group-text">Coefficient</span>
+                            <input type="number" class="form-control" name="factor" step="0.01" min="0.01" placeholder="coefficient" value="<?= $p['factor'] ?>" required>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
                         <div class="input-group">
                             <span class="input-group-text">+</span>
-                            <input type="number" class="form-control" name="p_50" placeholder="When deposit 50%" value="<?= $p['p_50'] ?>">
+                            <input type="number" class="form-control" name="p_50" placeholder="50%" value="<?= $p['p_50'] ?>">
                             <span class="input-group-text">VND</span>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="input-group">
                             <span class="input-group-text">+</span>
-                            <input type="number" class="form-control" name="p_10" placeholder="When deposit 10%" value="<?= $p['p_10'] ?>">
+                            <input type="number" class="form-control" name="p_10" placeholder="10%" value="<?= $p['p_10'] ?>">
                             <span class="input-group-text">VND</span>
                         </div>
                     </div>

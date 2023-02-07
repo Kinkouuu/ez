@@ -6,8 +6,8 @@ require_once("control/sidebar.php");
 <div class="container-fluid bg-dark mt-2" style="height: 90vh;">
     <div class="col-md-12">
         <div class="row">
-        <!-- small box -->
-            <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color: #0c56f5;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `product`")->rowcount(); ?></h3>
@@ -16,9 +16,9 @@ require_once("control/sidebar.php");
                     <a href="product.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            
-                    <!-- small box -->
-                    <div class="col-md-2">
+
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color: #628ff0;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `user`")->rowcount(); ?></h3>
@@ -28,8 +28,8 @@ require_once("control/sidebar.php");
                 </div>
             </div>
 
-                    <!-- small box -->
-                    <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color: #1ff2ef;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `order`")->rowcount(); ?></h3>
@@ -39,8 +39,8 @@ require_once("control/sidebar.php");
                 </div>
             </div>
 
-                    <!-- small box -->
-                    <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color:#69f051;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `money`")->rowcount(); ?></h3>
@@ -50,31 +50,31 @@ require_once("control/sidebar.php");
                 </div>
             </div>
 
-                    <!-- small box -->
-                    <div class="col-md-2">
-                <div class="box" style="background-color: lime;">
+            <!-- small box -->
+            <div class="col-md-3">
+                <div class="box " style="background-color: lime;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `statist`")->rowcount(); ?></h3>
                         <p>Revenue Statistic</p>
                     </div>
                     <a href="statist.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
-            </div>  
+            </div>
 
-                    <!-- small box -->
-                    <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color: yellow;">
                     <div class="inner">
                         <h3><?php $us = $db->query("SELECT count(distinct u_id) as us FROM `order`")->fetch();
-                        echo $us['us'] ?></h3>
+                            echo $us['us'] ?></h3>
                         <p>User's Spending</p>
                     </div>
                     <a href="spending.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
-                    <!-- small box -->
-                    <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color: gold;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `cate`")->rowcount(); ?></h3>
@@ -84,8 +84,8 @@ require_once("control/sidebar.php");
                 </div>
             </div>
 
-                    <!-- small box -->
-                    <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color: orange;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `factory`")->rowcount(); ?></h3>
@@ -95,8 +95,8 @@ require_once("control/sidebar.php");
                 </div>
             </div>
 
-                    <!-- small box -->
-                    <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color: pink;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `sale`")->rowcount(); ?></h3>
@@ -105,8 +105,8 @@ require_once("control/sidebar.php");
                     <a href="sale.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-                                <!-- small box -->
-                                <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color:#f097a4;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `gb`")->rowcount(); ?></h3>
@@ -115,7 +115,7 @@ require_once("control/sidebar.php");
                     <a href="sourcing.php" class="small-box-footer" style="text-decoration: none;">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="box" style="background-color:#eb3852;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `shipment`")->rowcount(); ?></h3>
@@ -126,8 +126,8 @@ require_once("control/sidebar.php");
             </div>
 
 
-                                <!-- small box -->
-                                <div class="col-md-2">
+            <!-- small box -->
+            <div class="col-md-3">
                 <div class="box" style="background-color:#f50505;">
                     <div class="inner">
                         <h3><?php echo $db->query("SELECT * FROM `history`")->rowcount(); ?></h3>

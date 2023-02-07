@@ -75,10 +75,10 @@ if (isset($_POST['save'])) {
                 $m_id = post('money');
                 $remain = post('remain');
                 $video = post('video'); 
-
+                $factor = post('factor');
                 $db->query("INSERT INTO `product` (`p_img`, `p_name`,`f_id`,`sm_id`, `c_id`,`specs`,`remain`,`video`) VALUES ('$p_img','$name','$f_id','$sm_id','$c_id','$specs','$remain','$video')");
                 $p_id = $db->lastInsertId();
-                $insert = $db->exec ("INSERT INTO `price` (`p_id`,`m_id`,`p_gb`,`p_stock`,`p_10`,`p_50`) VALUES ('$p_id','$m_id','$p_gb','$p_stock','$p_10','$p_50')");
+                $insert = $db->exec ("INSERT INTO `price` (`p_id`,`m_id`,`p_gb`,`p_stock`,`p_10`,`p_50`,`factor`) VALUES ('$p_id','$m_id','$p_gb','$p_stock','$p_10','$p_50','$factor')");
                 $db->exec("INSERT INTO `sm_list` (`p_id`,`sm_id`) VALUES ('$p_id', '$sm_id')");
                 $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thêm sản phẩm mới: ID = $p_id; Product name = $name ') ");
                 echo '<script>alert("Add new product infomation successfully"); window.location = "../product.php ";</script>';
