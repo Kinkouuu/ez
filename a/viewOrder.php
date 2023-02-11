@@ -5,7 +5,7 @@ require_once("control/sidebar.php");
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-        <button class="btn btn-outline-success" id="export"><i class="fa-solid fa-file-export"></i> Export</button>
+            <button class="btn btn-outline-success" id="export"><i class="fa-solid fa-file-export"></i> Export</button>
             <table class="table table-striped table-hover" style="overflow-x:auto;" id="dataList">
                 <thead>
                     <tr>
@@ -80,21 +80,21 @@ require_once("control/sidebar.php");
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                    <?php
 
-$oders = $db->query("SELECT * FROM (`order` INNER JOIN `details` ON `order`.o_id = `details`.o_id) INNER JOIN `user` ON `order`.u_id = `user`.u_id");
-foreach ($oders as $row) {
-    $o_id = $row['o_id']; //id gio hang
-    $dem = $db->query("SELECT 'id' FROM `details` WHERE `details`.o_id = '$o_id'")->rowCount();
-    //  echo $dem;
-    $id = $row['id']; // id don hang
-    $p_id = $row['p_id']; //id san pham
-    $sm_id = $row['sm_id']; //id lo hang
-    $s_id = $row['s_id']; //id giam gia
-    $g_id  = $row['g_id']; //id dot gb
-    // echo $sm_id ."= " .$p_id;
-?>
-                    <tr>
+                    $oders = $db->query("SELECT * FROM (`order` INNER JOIN `details` ON `order`.o_id = `details`.o_id) INNER JOIN `user` ON `order`.u_id = `user`.u_id");
+                    foreach ($oders as $row) {
+                        $o_id = $row['o_id']; //id gio hang
+                        $dem = $db->query("SELECT 'id' FROM `details` WHERE `details`.o_id = '$o_id'")->rowCount();
+                        //  echo $dem;
+                        $id = $row['id']; // id don hang
+                        $p_id = $row['p_id']; //id san pham
+                        $sm_id = $row['sm_id']; //id lo hang
+                        $s_id = $row['s_id']; //id giam gia
+                        $g_id  = $row['g_id']; //id dot gb
+                        // echo $sm_id ."= " .$p_id;
+                    ?>
+                        <tr>
 
                             <td><?= $sm_id ?></td>
                             <td><?= $p_id ?></td>
@@ -169,171 +169,167 @@ foreach ($oders as $row) {
                             <td>
                                 <?= $smt['license'] ?>
                             </td>
-<td>
-    <?= $sp['direc']?>
-</td>
-<td>
-    <?= $sp['cate']?>
-</td>
-<td>
-    <?= $sp['type']?>
-</td>
-<td>
-<?= $smt['ex_date'] ?>
-</td>
-<td>
-<?= $smt['im_date'] ?>
-</td>
-<td>
-<?= $smt['hn_date'] ?>
-</td>
-<td>
-<?= number_format($smt['gate_ship']) ?>
-</td>
-<td>
-<?= number_format($smt['hn_ship']) ?>
-</td>
-<td>
-    <?= $row['ship']?>
-</td>
-<td>
-    <?= $row['u_id']?>
-</td>
-<td>
-    <?= $row['phone']?>
-</td>
-<td>
-    <?= $row['email']?>
-</td>
-<td>
-    <?= $row['o_date']?>
-</td>
-<td>
-    <?= $row['o_id']?>
-</td>
-<td>
-    <?= $row['id']?>
-</td>
+                            <td>
+                                <?= $sp['direc'] ?>
+                            </td>
+                            <td>
+                                <?= $sp['cate'] ?>
+                            </td>
+                            <td>
+                                <?= $sp['type'] ?>
+                            </td>
+                            <td>
+                                <?= $smt['ex_date'] ?>
+                            </td>
+                            <td>
+                                <?= $smt['im_date'] ?>
+                            </td>
+                            <td>
+                                <?= $smt['hn_date'] ?>
+                            </td>
+                            <td>
+                                <?= number_format($smt['gate_ship']) ?>
+                            </td>
+                            <td>
+                                <?= number_format($smt['hn_ship']) ?>
+                            </td>
+                            <td>
+                                <?= $row['ship'] ?>
+                            </td>
+                            <td>
+                                <?= $row['u_id'] ?>
+                            </td>
+                            <td>
+                                <?= $row['phone'] ?>
+                            </td>
+                            <td>
+                                <?= $row['email'] ?>
+                            </td>
+                            <td>
+                                <?= $row['o_date'] ?>
+                            </td>
+                            <td>
+                                <?= $row['o_id'] ?>
+                            </td>
+                            <td>
+                                <?= $row['id'] ?>
+                            </td>
 
-<td>
-<?php
-if($row['g_id'] == 0){
-    echo 'In stock';
-}else{
-    echo 'Group buy #'. $row['g_id'] ;
-}
-?>
-</td>
-<td>
-<?= $row['f_name']?>
-</td>
-<td>
-<?= $row['l_name']?>
-</td>
-<td>
-<?= $row['no']?>
-</td>
-<td>
-<?= $row['street']?>
-</td>
-<td>
-<?= $row['ward']?>
-</td>
-<td>
-<?= $row['district']?>
-</td>
-<td>
-<?= $row['city']?>
-</td>
-<td>
-<?= $row['note']?>
-</td>
-<td>
-<?= $row['a_note']?>
-</td>
-<td>
-<?= $row['amount']?>
-</td>
-<td>
-<?= number_format($row['d_price'])?>
-</td>
-<?php
-    $sid = $row['s_id'];
-    // echo $sid;
-    if($sid > 0 ){
-        $gg = $db->query("SELECT * FROM `sale` WHERE `s_id` = '$sid'")->fetch();
-        $discount = $gg['discount'];
-        
-    }else{
-        $discount = 0;
-    }
-?>
-<td>
-<?= number_format($discount) ?>
-</td>
-<td>
-<?= number_format($row['fee'])?>
-</td>
-<td>
-<?php
-// $process = $row['process'];
-echo number_format( $row['process'])?>
-</td>
-<td>
-<?= number_format($row['ship'])?>
-</td>
-<td>
-    <?= $row['payment']?>
-</td>
-<td>
-    <?php $total = $row['amount'] * $row['d_price'] + $row ['fee'] +$row['process'] -$discount;
-    if($total>0){
-        echo number_format($total);
-    }else{
-        echo '0';
-    } ?>
-</td>
-<td>
-    <?= number_format($row['deposit'])?>
-</td>
-<td>
-<?= number_format($total-$row['deposit'])?>
-</td>
-<td>
-    <?= $row['o_no']?>
-</td>
-<td>
-    <?= $row['o_street']?>
-</td>
-<td>
-    <?= $row['o_ward']?>
-</td>
-<td>
-    <?= $row['o_district']?>
-</td>
-<td>
-    <?= $row['o_city']?>
-</td>
-<td>
-    <?= $row['note']?>
-</td>
-<td>
-    <?= $row['a_note']?>
-</td>
-<td>
-    <?= $row['d_date']?>
-</td>
-<td>
-    <?= $row['d_day']?>
-</td>
-<td>
-    <?= $row['stt']?>
-</td>
+                            <td>
+                                <?php
+                                if ($row['g_id'] == 0) {
+                                    echo 'In stock';
+                                } else {
+                                    echo 'Group buy #' . $row['g_id'];
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?= $row['f_name'] ?>
+                            </td>
+                            <td>
+                                <?= $row['l_name'] ?>
+                            </td>
+                            <td>
+                                <?= $row['no'] ?>
+                            </td>
+                            <td>
+                                <?= $row['street'] ?>
+                            </td>
+                            <td>
+                                <?= $row['ward'] ?>
+                            </td>
+                            <td>
+                                <?= $row['district'] ?>
+                            </td>
+                            <td>
+                                <?= $row['city'] ?>
+                            </td>
+                            <td>
+                                <?= $row['note'] ?>
+                            </td>
+                            <td>
+                                <?= $row['a_note'] ?>
+                            </td>
+                            <td>
+                                <?= $row['amount'] ?>
+                            </td>
+                            <td>
+                                <?= number_format($row['d_price']) ?>
+                            </td>
+                            <?php
+                            $sid = $row['s_id'];
+                            // echo $sid;
+                            if ($sid > 0) {
+                                $gg = $db->query("SELECT * FROM `sale` WHERE `s_id` = '$sid'")->fetch();
+                                $discount = $gg['discount'];
+                            } else {
+                                $discount = 0;
+                            }
+                            ?>
+                            <td>
+                                <?= number_format($discount) ?>
+                            </td>
+                            <td>
+                                <?= number_format($row['fee']) ?>
+                            </td>
+                            <td>
+                                <?php
+                                // $process = $row['process'];
+                                echo number_format($row['process']) ?>
+                            </td>
+                            <td>
+                                <?= number_format($row['ship']) ?>
+                            </td>
+                            <td>
+                                <?= $row['payment'] ?>
+                            </td>
+                            <td>
+                                <?php $total = $row['amount'] * $row['d_price'] + $row['fee'] + $row['process'] - $discount;
+                                if ($total > 0) {
+                                    echo number_format($total);
+                                } else {
+                                    echo '0';
+                                } ?>
+                            </td>
+                            <td>
+                                <?= number_format($row['deposit']) ?>
+                            </td>
+                            <td>
+                                <?= number_format($total - $row['deposit']) ?>
+                            </td>
+                            <td>
+                                <?= $row['o_phone']?>
+                            </td>
+                            <td>
+                                <?= $row['o_no'] ?>
+                            </td>
+                            <td>
+                                <?= $row['o_street'] ?>
+                            </td>
+                            <td>
+                                <?= $row['o_ward'] ?>
+                            </td>
+                            <td>
+                                <?= $row['o_district'] ?>
+                            </td>
+                            <td>
+                                <?= $row['o_city'] ?>
+                            </td>
+                            <td>
+                                <?= $row['d_date'] ?>
+                            </td>
+                            <td>
+                                <?= $row['d_day'] ?>
+                            </td>
+                            <td>
+                                <?= $row['stt'] ?>
+                            </td>
 
                         <?php
-                        }
+                    }
                         ?>
-                    </tr>
+                        </tr>
                 </tbody>
             </table>
         </div>

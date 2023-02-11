@@ -15,7 +15,7 @@ function mget($name) {
 }
 
 //get data from post method
-function mpost($name) {
+function post($name) {
     if (isset($_POST[$name])) {
         return locdata($_POST[$name]);
     } else {
@@ -38,5 +38,4 @@ function setting($text) {
 function hashp($inp) {
     return md5($inp);
 }
-
 ?>
