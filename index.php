@@ -1,7 +1,7 @@
 <?php
 require_once("layout/header.php");
 require_once("layout/nav.php");
-require_once("layout/menu.php");
+
 ?>
 
 <div class="container-fluid pt-5">
@@ -21,8 +21,10 @@ if ($tam == '') {
   require_once("view/sourcing.php");
 } elseif ($tam == 'contact-us') {
   require_once("view/contact.php");
-} else {
+} else if ( $tam == 'directory') {
   require_once("view/cate_type.php");
+} elseif ( $tam == 'product'){
+  require_once("view/product.php");
 }
 ?>
     </div>

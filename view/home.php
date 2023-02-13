@@ -4,221 +4,41 @@ require_once("layout/sidebar.php");
 <div class="text-center mb-4">
     <h2 class="section-title px-5"><span class="px-2">New Products</span></h2>
 </div>
-<div class="row px-xl-5 pb-3">
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/1.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Lò xo vàng</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>3.000 VND</h6>
+<div class="container-fluid mx-1">
+    <div class="col-md-12">
+        <div class="row">
+
+            <?php
+            $products = $db->query("SELECT * FROM (`product` INNER JOIN `price` ON `price`.p_id = `product`.p_id) INNER JOIN `money` ON `money`.m_id = `price`.m_id ");
+            foreach ($products as $product) {
+            ?>
+                <div class="col-md-2 mx-auto product-item p-3">
+                    <div class="row">
+                        <div class="col-md-12 product-img position-relative overflow-hidden bg-transparent">
+                            <img class="img-fluid" src="<?= $product['p_img'] ?>" alt="" style="width:100%">
+                        </div>
+                        <div class="col-md-12 text-center ">
+                            <h6><?= $product['p_name'] ?></h6>
+                            <h6><?= number_format($product['p_stock']) . " " . $product['sign'] ?></h6>
+                        </div>
+                        <div class="col-md-12 d-flex justify-content-between">
+                            <a href="?action=product&p_id=<?= $product['p_id']?>" class="btn btn-sm text-dark p-0">
+                                <i class="fas fa-eye text-primary mr-1"></i>
+                                Chi tiết
+                            </a>
+                            <a href="cart.html" class="btn btn-sm text-dark p-0">
+                                <i class="fas fa-shopping-cart text-primary mr-1"></i>
+                                Chọn mua
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/2.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Pink Xmas Linear pack 35</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>420.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/3.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Lò xo 2 tầng 62g</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>1.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/4.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Switch opener</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>105.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/5.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Combo lube</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>220.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/1.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Lò xo vàng</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>3.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/2.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Pink Xmas Linear pack 35</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>420.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/3.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Lò xo 2 tầng 62g</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>1.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/5.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Combo lube</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>220.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/1.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Lò xo vàng</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>3.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/2.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Pink Xmas Linear pack 35</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>420.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" src="img/3.jpg" alt="">
-            </div>
-            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                <h6 class="text-truncate mb-3">Lò xo 2 tầng 62g</h6>
-                <div class="d-flex justify-content-center">
-                    <h6>1.000 VND</h6>
-                </div>
-            </div>
-            <div class="card-footer d-flex justify-content-between bg-light border">
-                <a href="item.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add
-                    To Cart</a>
-            </div>
+            <?php
+            }
+            ?>
+
+
         </div>
     </div>
 </div>
