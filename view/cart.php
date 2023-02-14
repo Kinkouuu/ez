@@ -1,11 +1,3 @@
-<?php
-if (isset($_SESSION['user'])) {
-  $u_id = $_SESSION['user'];
-} else {
-  echo '<script>window.location="signin.php"</script>';
-}
-?>
-
 <div class="container-fluid bg-secondary mb-5">
   <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 10vh">
     <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
@@ -42,24 +34,34 @@ if (isset($_SESSION['user'])) {
                 <label for=""><strong> Số lượng đặt mua: </strong></label>
                 <input type="number" class="border border-2 rounded" min="1" max="<?= $sp['remain'] ?>" value="<?= $sp['unit'] ?>" style="min-width:50%">
               </div>
+              <?php
+              if (isset($_GET['reply']) && $_SESSION['pid'] == $p_id ) {
+                echo '<small class="text-end" style="color:dodgerblue">' . $_GET['reply'] . '</small>';
+              }
+              ?>
               <div class="d-flex justify-content-between mt-auto mb-2">
                 <label for=""><strong>Mã giảm giá: </strong></label>
                 <form action="process/xl_discount.php" method="post">
                   <form action="process/xl_discount.php" method="post">
                     <input type="hidden" name="p_id" value="<?= $p_id ?>">
                     <div class="d-flex">
-                      <input type="text" class="border border-2 border-end-0 rounded-start" name="stCode" placeholder="Nhập mã giảm giá">
+                  <?php
+                  if(isset($_SESSION['s_id']) && $_SESSION['pid']){
+                    $s_id = $_SESSION['s_id'];
+                    $gg = $db->query("SELECT * FROM  `sale` WHERE `s_id` = '$s_id'")->fetch();
+                    $discount = $gg['discount'];
+                  }else{
+                    $discount = 0;
+                  }
+                  ?>
+                        <input type="text" class="border border-2 border-end-0 rounded-start" name="stCode" placeholder="Nhập mã giảm giá">
+
                       <button class="btn-primary rounded-end" type="submit" name="ggst">
                         <i class="fa-solid fa-check-to-slot"></i>
                       </button>
                     </div>
                   </form>
               </div>
-              <?php
-                  if(isset($_GET['stock'])){
-                    echo 'stock';
-                  }
-                  ?>
             </div>
             <div class="col-md-2 d-flex flex-column">
               <div class="d-flex justify-content-between mb-auto">
@@ -68,7 +70,16 @@ if (isset($_SESSION['user'])) {
               </div>
               <div class="d-flex justify-content-between mt-auto">
                 <label for=""><strong>Tạm tính: </strong></label>
-                <p>43,000 VND</p>
+                <?php
+                  $provi = $sp['p_stock'] * $sp['unit'];
+                  if($provi <= $discount){
+                    $total = 0;
+                  }else{
+                    $total = $provi - $discount;
+                  }
+                ?>
+                <p><?= $total?></p>
+                <!-- <p>43,000 VND</p> -->
               </div>
             </div>
             <div class="col-md-2 d-flex flex-column ">

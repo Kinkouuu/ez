@@ -33,6 +33,9 @@ if (isset($_POST['delUser'])) {
 if (isset($_POST['save'])) { // thay doi so lan su dung
     $u_id = post('u_id');
     $max = post('max');
+    // echo $s_id;
+    // // echo $u_id;
+    // // echo $max;
     $db->exec("UPDATE `sale_user` SET `max` = '$max' WHERE `u_id` = '$u_id' AND `s_id` = '$s_id'");
     $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', 'Đã thay đổi số lần sử dụng mã giảm giá `$s_id` của người dùng `ID = $u_id` thành $max')");
     echo '<script> window.location = "../view/addSaleList.php?s_id=' . $s_id . ' "; </script>';
@@ -79,7 +82,7 @@ if (isset($_POST['rmvSP'])) {
         foreach($_POST['xoaSP'] as $xsp){
             // echo $xsp;
             $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', 'Đã hủy bỏ áp dụng mã giảm `ID = $s_id ` cho sản phẩm `ID = $xsp` ')");
-            $db->exec("DELETE FROM `sale_product` WHERE `s_id` = '$s_id' AND `p_id` = '$sp';");
+            $db->exec("DELETE FROM `sale_product` WHERE `s_id` = '$s_id' AND `p_id` = '$xsp';");
             echo '<script> window.location = "../view/addSaleList.php?s_id=' . $s_id . ' "; </script>';
         }
     }else{

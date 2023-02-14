@@ -111,7 +111,7 @@ if (isset($_GET['p_id'])) {
                                 if ($product['sign'] == 'VND') {
                                     echo $product['p_gb'] * $product['ex'] . ' VND';
                                 } else {
-                                    echo $product['p_gb'] ?> <?php echo $product['sign'] . '≈' . $product['price'] * $product['ex'] . ' VND';
+                                    echo $product['p_gb'] ?> <?php echo $product['sign'] . '≈' . number_format($product['p_gb'] * $product['ex']) . ' VND';
                                                 }
                                                     ?>
                             </p>

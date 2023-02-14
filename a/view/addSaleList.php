@@ -136,9 +136,10 @@ if (isset($_GET['rmvUser'])) {
                         $use = $db->query("SELECT * FROM (`user` INNER JOIN `sale_user` ON `user`.u_id = `sale_user`.u_id) INNER JOIN `sale` ON `sale_user`.s_id = `sale`.s_id WHERE `sale_user`.s_id='$s_id'");
                         foreach ($use as $list) {
                         ?>
-                            <form action="" method="POST">
+                            <form action="../model/prs_saleList.php" method="POST">
                                 <tr>
                                     <td>
+                                    <input type="hidden" name="s_id" value="<?= $s_id ?>">
                                         <input type="hidden" name="u_id" value="<?= $list['u_id'] ?>">
                                         <?php echo $list['u_id'] ?>
                                     </td>

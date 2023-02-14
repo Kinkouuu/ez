@@ -26,10 +26,11 @@ require_once("layout/sidebar.php");
                                 <i class="fas fa-eye text-primary mr-1"></i>
                                 Chi tiết
                             </a>
-                            <a href="cart.html" class="btn btn-sm text-dark p-0">
+                            <!-- <button class="btn btn-sm text-dark p-0" name="add">
                                 <i class="fas fa-shopping-cart text-primary mr-1"></i>
                                 Chọn mua
-                            </a>
+                            </button> -->
+
                         </div>
                     </div>
 
