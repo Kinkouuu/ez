@@ -32,7 +32,7 @@ require_once("template/core.php");
                                             <a class="nav-link" aria-current="page" href="#">Hòm thư góp ý</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">Giới thiệu</a>
+                                            <a class="nav-link" aria-current="page" href="?action=gioithieu">Giới thiệu</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -15,16 +15,20 @@ require_once("layout/nav.php");
   }
 if ($tam == '') {
   require_once("view/home.php");
-}elseif ($tam == 'about-us'){
+}elseif ($tam == 'gioithieu'){
   require_once("view/about.php");
 } elseif ($tam == 'start-sourcing') {
   require_once("view/sourcing.php");
-} elseif ($tam == 'contact-us') {
+} elseif ($tam == 'lienhe') {
   require_once("view/contact.php");
-} else if ( $tam == 'directory') {
+} else if ( $tam == 'danhmucsanpham') {
   require_once("view/cate_type.php");
-} elseif ( $tam == 'product'){
+} elseif ( $tam == 'thongtinsanpham'){
   require_once("view/product.php");
+} elseif ( $tam == 'giohang'){
+  require_once("view/cart.php");
+} elseif ( $tam == 'thanhtoan'){
+  require_once("view/ipay.php");
 }
 ?>
     </div>

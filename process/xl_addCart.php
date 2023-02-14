@@ -18,6 +18,7 @@ if (isset($_SESSION['user'])){
             }else{
                 $db->exec ("INSERT INTO `cart` (`u_id`,`p_id`, `unit`,`book`) VALUES ('$u_id','$p_id', '$unit','$book')");
             }
+            header("Location:../index.php?action=giohang");
         }
     }
 }else{

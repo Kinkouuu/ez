@@ -22,7 +22,7 @@ require_once("layout/sidebar.php");
                             <h6><?= number_format($product['p_stock']) . " " . $product['sign'] ?></h6>
                         </div>
                         <div class="col-md-12 d-flex justify-content-between">
-                            <a href="?action=product&p_id=<?= $product['p_id']?>" class="btn btn-sm text-dark p-0">
+                            <a href="?action=thongtinsanpham&p_id=<?= $product['p_id']?>" class="btn btn-sm text-dark p-0">
                                 <i class="fas fa-eye text-primary mr-1"></i>
                                 Chi tiết
                             </a>

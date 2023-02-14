@@ -133,7 +133,7 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                     <div class="col-sm-3">
                         <div class="input-group">
                             <div class="col-sm-7">
-                                <input type="number" class="form-control" name="p_gb" placeholder="In GB" value="<?= $p['p_gb'] ?>" required>
+                                <input type="number" class="form-control" name="p_gb" step="0.01" placeholder="In GB" value="<?= $p['p_gb'] ?>" required>
                             </div>
                             <div class="col-sm-5">
                                 <select class="input-group-text" name="m_id" aria-label="Default select example" style="width: 100%;text-align:center">

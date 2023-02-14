@@ -130,7 +130,7 @@ if (isset($_POST['submit'])) {
                     $db->exec("INSERT INTO `history` (`a_id`,`action`) VALUES ('$a_id','Đã thay đổi link review của sản phẩm `$p_id - $name` thành `$video`')");
                 }
                 $db->exec("UPDATE `product` SET `p_name` = '$name', `c_id` = '$c_id',`sm_id` = '$sm_id', `f_id` = '$f_id',`p_img` = '$p_img', `specs` = '$specs',`remain` = '$remain',`video` = '$video' WHERE `p_id` = '$p_id'");
-                $db->query("UPDATE `price` SET `p_gb` = '$p_gb',`p_stock` = '$p_stock',`p_50` = '$p_50',`p_10` = '$p_10',`factor` ='$factor' WHERE `p_id` = '$p_id'");
+                $db->query("UPDATE `price` SET `p_gb` = '$p_gb',`m_id`='$m_id',`p_stock` = '$p_stock',`p_50` = '$p_50',`p_10` = '$p_10',`factor` ='$factor' WHERE `p_id` = '$p_id'");
                 //  var_dump($up);
                 echo '<script>alert("Update product\'s infomation successfully"); window.location = "../view/upProduct.php?p_id= '.$p_id.' ";</script>';
 }
