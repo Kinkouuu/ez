@@ -30,7 +30,7 @@ if ($tam == '') {
   require_once("view/product.php");
 } elseif ( $tam == 'giohang'){
   // unset($_SESSION['s_id']);
-  require_once("view/cart.php");
+
   require_once("view/ipay.php");
 } elseif ( $tam == 'thanhtoan'){
   require_once("view/ipay.php");

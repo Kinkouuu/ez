@@ -5,7 +5,7 @@ if (isset($_GET['p_id'])) {
 }
 
 ?>
-<div class="container mt-5">
+<div class="container mt-3">
 
     <div class="row">
         <div class="col-md-6 ">

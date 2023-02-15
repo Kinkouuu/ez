@@ -1,3 +1,11 @@
+<?php
+require_once("cart.php");
+if(isset($_POST['pmt'])){
+  $_SESSION['payment']  = $_POST['options'];
+  echo "<meta http-equiv='refresh' content='0'>";
+} 
+
+?>
 <h2 class="text-center">---Đặt hàng---</h2>
 <?php
 $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
@@ -8,7 +16,6 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
       <div class="mb-4">
         <h4 class="font-weight-semi-bold mb-4">Địa chỉ nhận hàng</h4>
         <div class="row">
-
           <div class="col-md-6 form-group">
             <label>Tên người nhận</label>
             <input class="form-control" type="text" value="<?= $in4['f_name'] . " " . $in4['l_name'] ?>" placeholder="Tên người nhận">
@@ -54,52 +61,88 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
           <h4 class="font-weight-semi-bold m-0">Thanh toán</h4>
         </div>
         <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
-<i class="fas fa-money-check-dollar"></i> Chọn phương thức thanh toán 
-</button>
+        <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fas fa-money-check-dollar"></i> Chọn phương thức thanh toán
+        </button>
 
-<!-- Modal -->
-<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chọn phương thức thanh toán</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST">
+
+                  <div class="form-check">
+                    <input type='radio' name='options' value='100%' <?php echo $payment == '100%' ? ' checked ' : ''; ?>>
+                    <label class="form-check-label">
+                      Thanh toán toàn bộ 100% đơn hàng
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input type='radio' name='options' value='50%' <?php echo $payment == '50%' ? ' checked ' : ''; ?>>
+                    <label class="form-check-label">
+                      Cọc 50% tổng giá trị đơn hàng
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input type='radio' name='options' value='10%' <?php echo $payment == '10%' ? ' checked ' : ''; ?>>
+                    <label class="form-check-label" for="">
+                      Cọc 10% tổng giá trị đơn hàng
+                    </label>
+                  </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="submit" name="pmt" class="btn btn-primary">Xác nhận</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
         <div class="card-body">
-          <h5 class="font-weight-medium mb-3">Products</h5>
+          <?php
+          $cart = $db->query("SELECT count(distinct p_id) as ssp, sum(unit + book) as slm FROM `cart` WHERE `u_id` = '$u_id'")->fetch();
+          ?>
           <div class="d-flex justify-content-between">
-            <p>Lò xo vàng</p>
-            <p>3.000 VND</p>
+            <h5 class="font-weight-medium mb-3">Số sản phẩm: </h5>
+            <p><?= $cart['ssp'] ?></p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h5 class="font-weight-medium mb-3">Tổng số lượng: </h5>
+            <p><?= $cart['slm'] ?></p>
           </div>
           <hr class="mt-0">
           <div class="d-flex justify-content-between mb-3 pt-1">
-            <h6 class="font-weight-medium">Subtotal</h6>
-            <h6 class="font-weight-medium">3.000 VND</h6>
+            <h6 class="font-weight-medium">Phí dịch vụ:
+              <small class="btn btn-default pb-1 p-0 m-0" data-toggle="tooltip" data-placement="right" title="Phí xử lý giao dịch (4.5% giá trị đơn hàng)">
+                <i class="fa-solid fa-circle-question"></i>
+              </small>
+            </h6>
+            <h6 class="font-weight-medium"><?= number_format($tam * 0.045) . " VND" ?></h6>
           </div>
-          <div class="d-flex justify-content-between">
-            <h6 class="font-weight-medium">Shipping</h6>
-            <h6 class="font-weight-medium">15.000 VND</h6>
-          </div>
+
         </div>
         <div class="card-footer border-secondary bg-transparent">
           <div class="d-flex justify-content-between mt-2">
-            <h5 class="font-weight-bold">Total</h5>
-            <h5 class="font-weight-bold">18.000 VND</h5>
+            <h5 class="font-weight-bold">Tổng tiền: </h5>
+            <h5 class="font-weight-bold"><?= number_format($tam * 1.045) . " VND" ?></h5>
           </div>
-          <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+          <div class="text-center m-1">
+
+            <div class="">
+              <img src="img/QRCODE.jpg" alt="" style="width:50%">
+            </div>
+            <span style="color:deepskyblue">Nội dung giao dịch:<br> SDT Tên Hàng Số Lượng</span>
+          </div>
+          <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Đặt hàng</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+</form>

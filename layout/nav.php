@@ -62,7 +62,7 @@ require_once("template/core.php");
                                             <span><?= $user['f_name'] . " " . $user['l_name'] ?></span>
                                             <ul class="dropdown-menu border border-0" aria-labelledby="dropdownMenuButton1">
                                                 <li>
-                                                    <a class="dropdown-item" href="">
+                                                    <a class="dropdown-item" href="?action=giohang">
                                                         <i class="fas fa-cart-shopping"></i>
                                                         Giỏ hàng
                                                     </a>

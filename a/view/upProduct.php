@@ -25,7 +25,7 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                 <div class="form-group row mb-3">
                     <div class="col-sm-6 d-flex align-items-center">
                         <label for="" class="col-sm-2">Factory:</label>
-                        <select class="form-select" name="f_id" id="fact">
+                        <select class="form-select" name="f_id" id="fact" required>
                             <option value="<?= $p['f_id'] ?>"><?= $p['f_name'] ?></option>
                             <?php
                             $sf_id = $p['f_id'];
@@ -38,7 +38,7 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                     </div>
                     <div class="col-sm-6 d-flex align-items-center">
                         <label for="" class="col-sm-2">Shipment:</label>
-                        <select class="form-select" name="smt" id="smt">
+                        <select class="form-select" name="smt" id="smt" required>
                             <option value="<?= $p['sm_id'] ?>"><?= $p['sm_code'] ?></option>
                             <?php
                             $sm_id = $p['sm_id'];
@@ -60,7 +60,7 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
 
                         <label class="col-sm-2">Type:</label>
 
-                        <select class="form-select" id="tdirec" name="tdirec">
+                        <select class="form-select" id="tdirec" name="tdirec" required>
                             <option value="<?= $p['direc'] ?>" class="text-center"><?= $p['direc'] ?></option>
                             <?php
                             $nganh = $p['direc'];
@@ -71,7 +71,7 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                             <?php } ?>
                         </select>
 
-                        <select class="form-select" name="tcate" id="tcate">
+                        <select class="form-select" name="tcate" id="tcate" required>
                             <option value="<?= $p['cate'] ?>" class="text-center"><?= $p['cate'] ?></option>
                             <?php
                             $dmuc = $p['cate'];
@@ -84,7 +84,7 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                             ?>
                         </select>
 
-                        <select class="form-select" name="type" id="type">
+                        <select class="form-select" name="type" id="type" required>
                             <option value="<?= $p['c_id'] ?>" class="text-center"><?= $p['type'] ?></option>
                             <?php
                             $loai = $p['type'];
