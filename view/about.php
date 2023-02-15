@@ -52,7 +52,7 @@
   <div class="row px-xl-5 mt-5">
     <div class="col-lg-6 col-md-12">
       <div class="fit-content text-center">
-        <img class="custom-img" src="img/HA.png" style="width:30%">
+        <img class="custom-img" src="img/HA.png" style="width:50%">
         <h4 class="px-5 mt-5">CEO LE HOANG ANH</h4>
         <div class="flex-column justify-content-start">
           <p class="mb-1 mt-3">
@@ -72,7 +72,7 @@
     </div>
     <div class="col-lg-6 col-md-12">
       <div class="fit-content text-center">
-        <img class="custom-img" src="img/QTM.png" style="width:30%">
+        <img class="custom-img" src="img/QTM.png" style="width:50%">
         <h4 class="px-5 mt-5">COO CEDRIC QUANG TRAN</h4>
         <p class="mb-1 mt-3">
           Ex-Hotelier(Luxury hotels).

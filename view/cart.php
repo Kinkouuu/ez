@@ -33,7 +33,7 @@ if (isset($_GET['gdel'])) { //xoa sp gb
   </div>
 </div>
 
-<form action="" method="post">
+
   <div class="container-fluid m-1">
     <div class="row">
       <?php
