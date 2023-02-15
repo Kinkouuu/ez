@@ -13,6 +13,9 @@ require_once("layout/nav.php");
   } else {
     $tam = '';
   }
+ if($tam != "giohang"){
+  unset($_SESSION['s_id']); // xoa session giam gia khi leave khoi trang cart
+ } 
 if ($tam == '') {
   require_once("view/home.php");
 }elseif ($tam == 'gioithieu'){
@@ -26,7 +29,9 @@ if ($tam == '') {
 } elseif ( $tam == 'thongtinsanpham'){
   require_once("view/product.php");
 } elseif ( $tam == 'giohang'){
+  // unset($_SESSION['s_id']);
   require_once("view/cart.php");
+  require_once("view/ipay.php");
 } elseif ( $tam == 'thanhtoan'){
   require_once("view/ipay.php");
 }

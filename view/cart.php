@@ -1,6 +1,6 @@
-<div class="container-fluid bg-secondary mb-5">
+<div class="container-fluid p-auto bg-info bg-gradient  bg-opacity-25 mb-5">
   <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 10vh">
-    <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
+    <h1 class="font-weight-semi-bold text-uppercase m-auto ">Giỏ hàng</h1>
   </div>
 </div>
 
@@ -35,7 +35,7 @@
                 <input type="number" class="border border-2 rounded" min="1" max="<?= $sp['remain'] ?>" value="<?= $sp['unit'] ?>" style="min-width:50%">
               </div>
               <?php
-              if (isset($_GET['reply']) && $_SESSION['pid'] == $p_id ) {
+              if (isset($_GET['reply']) && $_SESSION['pid'] == $p_id && $_GET['stock'] == 'true' ) {
                 echo '<small class="text-end" style="color:dodgerblue">' . $_GET['reply'] . '</small>';
               }
               ?>
@@ -45,17 +45,7 @@
                   <form action="process/xl_discount.php" method="post">
                     <input type="hidden" name="p_id" value="<?= $p_id ?>">
                     <div class="d-flex">
-                  <?php
-                  if(isset($_SESSION['s_id']) && $_SESSION['pid']){
-                    $s_id = $_SESSION['s_id'];
-                    $gg = $db->query("SELECT * FROM  `sale` WHERE `s_id` = '$s_id'")->fetch();
-                    $discount = $gg['discount'];
-                  }else{
-                    $discount = 0;
-                  }
-                  ?>
                         <input type="text" class="border border-2 border-end-0 rounded-start" name="stCode" placeholder="Nhập mã giảm giá">
-
                       <button class="btn-primary rounded-end" type="submit" name="ggst">
                         <i class="fa-solid fa-check-to-slot"></i>
                       </button>
@@ -71,14 +61,21 @@
               <div class="d-flex justify-content-between mt-auto">
                 <label for=""><strong>Tạm tính: </strong></label>
                 <?php
-                  $provi = $sp['p_stock'] * $sp['unit'];
-                  if($provi <= $discount){
-                    $total = 0;
+                  if(isset($_SESSION['s_id']) && $_SESSION['pid'] == $p_id && $_GET['stock'] == 'true'){
+                    $s_id = $_SESSION['s_id'];
+                    // echo $s_id;
+                    $gg = $db->query("SELECT * FROM  `sale` WHERE `s_id` = '$s_id'")->fetch();
+                    $tmp = $sp['p_stock'] * $sp['unit'] + 40000 - $gg['discount'];
                   }else{
-                    $total = $provi - $discount;
+                    $tmp = $sp['p_stock'] * $sp['unit'] +40000;
                   }
-                ?>
-                <p><?= $total?></p>
+                  if($tmp <=0){
+                    $provi = 0;
+                  }else{
+                    $provi = $tmp;
+                  }
+                  ?>
+                <p><?= number_format($provi) ." VND"?></p>
                 <!-- <p>43,000 VND</p> -->
               </div>
             </div>
@@ -115,6 +112,11 @@
                 <label for=""><strong> Số lượng đặt trước: </strong></label>
                 <input type="number" class="border border-2 rounded" min="1" max="<?= $sp['remain'] ?>" value="<?= $sp['book'] ?>" style="min-width:50%">
               </div>
+              <?php
+              if (isset($_GET['reply']) && $_SESSION['pid'] == $p_id && $_GET['stock'] == 'false' ) {
+                echo '<small class="text-end" style="color:dodgerblue">' . $_GET['reply'] . '</small>';
+              }
+              ?> 
               <div class="d-flex justify-content-between mt-auto mb-2">
                 <label for=""><strong>Mã giảm giá: </strong></label>
                 <form action="process/xl_discount.php" method="post">
@@ -135,7 +137,22 @@
               </div>
               <div class="d-flex justify-content-between mt-auto">
                 <label for=""><strong>Tạm tính: </strong></label>
-                <p>43,000 VND</p>
+                <?php
+                  if(isset($_SESSION['s_id']) && $_SESSION['pid'] == $p_id && $_GET['stock'] == 'false'){
+                    $s_id = $_SESSION['s_id'];
+                    // echo $s_id;
+                    $gg = $db->query("SELECT * FROM  `sale` WHERE `s_id` = '$s_id'")->fetch();
+                    $tmp = $sp['p_gb'] * $sp['factor'] *$sp['ex'] * $sp['book'] + 40000 - $gg['discount'];
+                  }else{
+                    $tmp =$sp['p_gb'] * $sp['factor'] *$sp['ex']*$sp['book'] +40000;
+                  }
+                  if($tmp <=0){
+                    $provi = 0;
+                  }else{
+                    $provi = $tmp;
+                  }
+                  ?>
+                <p><?= number_format($provi) ." VND"?></p>
               </div>
             </div>
             <div class="col-md-2 d-flex flex-column ">
