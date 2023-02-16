@@ -5,8 +5,6 @@ require_once 'function.php';
 
 if (isset($_SESSION['user'])) {
   $u_id = $_SESSION['user'];
-} else {
-  echo '<script>window.location="signin.php"</script>';
-}
+} 
 
 ?>

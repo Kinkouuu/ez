@@ -1,5 +1,8 @@
 <?php
 require_once("../template/core.php");
+if (!isset($_SESSION['user'])) {
+    echo '<script>window.location="signin.php"</script>';
+  }
 if (isset($_SESSION['user'])){
     $u_id = $_SESSION['user'];
     // echo $u_id;

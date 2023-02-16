@@ -1,6 +1,8 @@
 <?php
 require_once("../template/core.php");
-
+if (!isset($_SESSION['user'])) {
+    echo '<script>window.location="signin.php"</script>';
+  }
 if (isset($_POST['dellStock'])){
     $p_id = post('del_id');
     $isGB = $db->query("SELECT * FROM `cart` WHERE `p_id` = '$p_id' AND `u_id` ='$u_id'")->fetch();

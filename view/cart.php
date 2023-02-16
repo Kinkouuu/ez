@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['user'])) {
+  echo '<script>window.location="signin.php"</script>';
+}
 if (isset($_SESSION['payment'])) {
   $payment = $_SESSION['payment'];
 } else {
@@ -32,7 +35,11 @@ if (isset($_GET['gdel'])) { //xoa sp gb
     <h1 class="font-weight-semi-bold text-uppercase m-auto ">Giỏ hàng</h1>
   </div>
 </div>
-
+<?php
+if(isset($_GET['tb'])){
+  echo '<h3 class="text-center" style="color:red">'.$_GET['tb'].'</h3>';
+}
+?>
 
   <div class="container-fluid m-1">
     <div class="row">

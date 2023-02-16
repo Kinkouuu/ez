@@ -1,5 +1,8 @@
 <?php
 require_once ("../template/core.php");
+if (!isset($_SESSION['user'])) {
+    echo '<script>window.location="signin.php"</script>';
+  }
 if(isset($_POST['signIn'])){
     $acc = post('acc');
     $pass = hashp(post('pass'));
