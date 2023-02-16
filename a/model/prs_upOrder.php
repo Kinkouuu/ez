@@ -19,8 +19,8 @@ if(isset($_POST['save'])){
     if($cost != $check['ship']){
       $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', 'Đã cập nhật phí ship cost đơn hàng `$id` thành `$cost`')");
     }
-    if($a_note != $check['note']){
-      $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', 'Đã cập nhật ghi chứ đơn hàng `$id` thành `$a_note`')");
+    if($a_note != $check['a_note']){
+      $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', 'Đã cập nhật ghi chú đơn hàng `$id` thành `$a_note`')");
     }
     if($stt != $check['stt']){
       $db->exec("INSERT INTO `history` (`a_id`, `action`) VALUES ('$a_id', 'Đã cập nhật trạng thái đơn hàng `$id` thành `$stt`')");

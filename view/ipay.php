@@ -3,6 +3,8 @@ require_once("cart.php");
 if (isset($_POST['pmt'])) {
   $_SESSION['payment']  = $_POST['options'];
   echo "<meta http-equiv='refresh' content='0'>";
+}else{
+  $_SESSION['payment'] = '100%';
 }
 
 ?>
@@ -49,6 +51,9 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
                       Cọc 10% tổng giá trị đơn hàng
                     </label>
                   </div>
+                  <small style="color:red">*Lưu ý: Giá sản phẩm có thể thay đổi tùy theo phương thức thanh toán.<br>
+                    Thanh toán toàn bộ để có được mức giá tốt nhất.
+                  </small>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
@@ -84,6 +89,18 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
           <div class="d-flex justify-content-between mt-2">
             <h5 class="font-weight-bold">Tổng tiền: </h5>
             <h5 class="font-weight-bold"><?= number_format($tam * 1.045) . " VND" ?></h5>
+          </div>
+          <div class="d-flex justify-content-between mt-2">
+            <h5>Cần cọc trước: </h5>
+            <h5><?php
+              if($payment =='10%'){
+                echo number_format($tam * 1.045 * 0.1) . " VND";
+              }else if( $payment =='50%'){
+                echo number_format($tam * 1.045 * 0.5) . " VND";
+              }else{
+                echo number_format($tam * 1.045) . " VND";
+              }
+            ?></h5>
           </div>
           <div class="text-center m-1">
             <div class="">

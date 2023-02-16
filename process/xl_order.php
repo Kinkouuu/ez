@@ -88,7 +88,7 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
                 VALUES('$o_id','$dp_id','$sm_id','$s_id','$g_id','$book','$gb_price','40000')");
         }
     }
-    header("Location:../index.php?action=donhang.php");
+    header("Location:../index.php?action=donhang");
 }
 
 ?>

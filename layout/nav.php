@@ -68,7 +68,7 @@ require_once("template/core.php");
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="">
+                                                    <a class="dropdown-item" href="?action=donhang">
                                                         <i class="fa-sharp fa-solid fa-table-list"></i>
                                                         Đơn hàng
                                                     </a>

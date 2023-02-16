@@ -29,10 +29,11 @@ if ($tam == '') {
 } elseif ( $tam == 'thongtinsanpham'){
   require_once("view/product.php");
 } elseif ( $tam == 'giohang'){
-
   require_once("view/ipay.php");
 } elseif ( $tam == 'donhang'){
   require_once("view/order.php");
+}elseif ( $tam == 'chitietdonhang'){
+  require_once("view/detail.php");
 }
 ?>
     </div>
