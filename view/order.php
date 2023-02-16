@@ -150,7 +150,7 @@ if (!isset($_SESSION['user'])) {
                             </div>
                             <div class="col-md-4 d-flex">
                                 <strong>Đã thanh toán: </strong>
-                                <p><?= $order['deposit']?> VND</p>
+                                <p><?= number_format( $order['deposit'])?> VND</p>
                             </div>
                             <div class="col-md-4 d-flex">
                                 <strong>Cần phải trả: </strong>

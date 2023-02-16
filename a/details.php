@@ -195,7 +195,7 @@ if (isset($_POST['sub'])) {
                                 <td colspan="3">
                                     <div class="input-group">
                                         <label class="input-group-text">Ship-cost: </label>
-                                        <input type="number" class="form-control" name="cost" value="<?= $tt['ship'] ?>">
+                                        <input type="number" class="form-control" min ="0" name="cost" value="<?= $tt['ship'] ?>" required>
                                         <span class="input-group-text">VND</span>
                                     </div>
                                 </td>
@@ -223,13 +223,8 @@ if (isset($_POST['sub'])) {
                                                 <option value="Đến kho TP.HCM" <?php echo $tt['stt'] == 'Đến kho TP.HCM' ? ' selected ' : ''; ?>>Đến kho TP.HCM</option>
                                                 <option value="Đến kho Hà Nội" <?php echo $tt['stt'] == 'Đến kho Hà Nội' ? ' selected ' : ''; ?>>Đến kho Hà Nội</option>
                                                 <option value="Vận chuyển nội địa" <?php echo $tt['stt'] == 'Vận chuyển nội địa' ? ' selected ' : ''; ?>>Vận chuyển nội địa</option>
-                                                <?php
-                                                if ($tt['d_date'] != '0000-00-00') { //neu da chon ngay gui hang
-                                                ?>
-                                                    <option value="Đã giao hàng">Đã giao hàng</option>
-                                                <?php
-                                                }
-                                                ?>
+                                                <option value="Đã giao hàng">Đã giao hàng</option>
+   
                                             </select>
                                         <?php
                                         } else {
@@ -241,7 +236,7 @@ if (isset($_POST['sub'])) {
                                 <td colspan="5">
                                     <div class="input-group">
                                         <label class="input-group-text">Sent date: </label>
-                                        <input type="date" class="form-control" name="sent" value="<?= $tt['d_date'] ?>">
+                                        <input type="date" class="form-control" name="sent" value="<?= $tt['d_date'] ?>" required>
                                     </div>
                                 </td>
                                 <td colspan="2">

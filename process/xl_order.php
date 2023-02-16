@@ -64,8 +64,8 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
             // echo $sid;
             // Them thong tin don hang stock //
             $db->exec("INSERT INTO `details` 
-                (`o_id`,`p_id`,`sm_id`,`s_id`,`amount`,`d_price`,`fee`) 
-                    VALUES('$o_id','$dp_id','$sm_id','$s_id','$unit','$s_price','40000')");
+                (`o_id`,`p_id`,`sm_id`,`s_id`,`amount`,`d_price`,`fee`,`stt`) 
+                    VALUES('$o_id','$dp_id','$sm_id','$s_id','$unit','$s_price','40000','Đang chờ xác nhận')");
             // Cap nhat so luong con lai trong kho hang //
             $db->exec("UPDATE `product` SET `remain` = remain - $unit WHERE `p_id` = '$dp_id'");
         }
@@ -84,11 +84,10 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
                 $gb_price = $product['p_gb'] * $product['ex'] * $product['factor']; 
             }
             $db->exec("INSERT INTO `details` 
-            (`o_id`,`p_id`,`sm_id`,`s_id`,`g_id`,`amount`,`d_price`,`fee`) 
-                VALUES('$o_id','$dp_id','$sm_id','$s_id','$g_id','$book','$gb_price','40000')");
+            (`o_id`,`p_id`,`sm_id`,`s_id`,`g_id`,`amount`,`d_price`,`fee`,`stt`) 
+                VALUES('$o_id','$dp_id','$sm_id','$s_id','$g_id','$book','$gb_price','40000','Đang chờ xác nhận')");
         }
     }
     header("Location:../index.php?action=donhang");
 }
-
 ?>
