@@ -14,10 +14,10 @@ require_once("layout/sidebar.php");
                 <div class="col-md-2 m-auto product-item p-3 border rounded bg-light" style="min-height: 25rem;position: relative;">
                     <!-- <div class="row"> -->
                         <a href="?action=thongtinsanpham&p_id=<?= $product['p_id'] ?>" class="btn btn-sm text-dark p-0">
-                            <div class="col-md-12 product-img position-relative overflow-hidden bg-transparent p-1" style="height:80%;position: absolute;top: 10px;">
+                            <div class="col-md-12 product-img position-relative overflow-hidden bg-transparent p-1" style="height:95%;position: absolute;top: 10px;">
                                 <img class="img-fluid" src="<?= $product['p_img'] ?>" alt="" style="width:100%">
                             </div>
-                            <div class="text-center justifu-content-center border-top" style="height:20%;position: absolute;bottom: 0px;margin:auto;width:90%">
+                            <div class="text-center justifu-content-center border-top" style="height:15%;position: absolute;bottom: 0px;margin:auto;width:90%">
                                 <strong style="height:3rem;text-align:center"><?= $product['p_name'] ?></strong>
                                 <h6><?= number_format($product['p_stock']) . " VND" ?></h6>
                             </div>

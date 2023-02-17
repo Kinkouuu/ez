@@ -1,7 +1,7 @@
 
 
 <div class="container-fluid bg-secondary mb-5">
-  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+<div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 10vh">
     <h1 class="font-weight-semi-bold text-uppercase mb-3">Về chúng tôi</h1>
 
   </div>

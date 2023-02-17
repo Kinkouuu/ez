@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
 ?>
     <div class="row d-flex justify-content-evenly">
         <?php
-        $orders = $db->query("SELECT * FROM `order` WHERE `u_id`= '$u_id' ORDER BY `o_id` ASC");
+        $orders = $db->query("SELECT * FROM `order` WHERE `u_id`= '$u_id' ORDER BY `o_id` DESC");
         foreach ($orders as $order) {
             $o_id = $order['o_id'];
             $total = 0; // khoi tao tong tien don hang

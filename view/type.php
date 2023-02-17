@@ -19,19 +19,24 @@ else if(isset($_GET['tensanpham'])){
         <div class="row">
 
             <?php
-            $products = $db->query("SELECT * FROM ((`product` INNER JOIN `price` ON `price`.p_id = `product`.p_id) INNER JOIN `money` ON `money`.m_id = `price`.m_id) INNER JOIN `cate` ON `product`.c_id = `cate`.c_id WHERE $dk ORDER BY `product`.p_id DESC");
+            $products = $db->query("SELECT * FROM ((`product` INNER JOIN `price` ON `price`.p_id = `product`.p_id) INNER JOIN `money` ON `money`.m_id = `price`.m_id) INNER JOIN `cate` ON `product`.c_id = `cate`.c_id WHERE $dk ORDER BY `product`.remain DESC");
                 if($products->rowCount() > 0){
                     foreach ($products as $product) {
                         ?>
                             <div class="col-md-2 m-auto product-item p-3 border rounded bg-light" style="min-height: 25rem;position: relative;">
                                 <!-- <div class="row"> -->
                                     <a href="?action=thongtinsanpham&p_id=<?= $product['p_id'] ?>" class="btn btn-sm text-dark p-0">
-                                        <div class="col-md-12 product-img position-relative overflow-hidden bg-transparent p-1" style="height:80%;position: absolute;top: 10px;">
+                                        <div class="col-md-12 product-img position-relative overflow-hidden bg-transparent p-1" style="height:82%;position: absolute;top: 10px;">
                                             <img class="img-fluid" src="<?= $product['p_img'] ?>" alt="" style="width:100%">
                                         </div>
-                                        <div class="text-center justifu-content-center border-top" style="height:20%;position: absolute;bottom: 0px;margin:auto;width:90%">
+                                        <div class="text-center justify-content-center border-top" style="height:18%;position: absolute;bottom: 0px;margin:auto;width:90%">
                                             <strong style="height:3rem;text-align:center"><?= $product['p_name'] ?></strong>
                                             <h6><?= number_format($product['p_stock']) . " VND" ?></h6>
+                                            <?php
+                                                if($product['remain'] == 0){
+                                                    echo '<span class="alert alert-danger text-end p-0 w-100">Đã bán hết</span>';
+                                                }
+                                            ?>
                                         </div>
                                     </a>
                             </div>

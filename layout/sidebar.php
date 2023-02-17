@@ -1,6 +1,6 @@
 <div class="container-fluid mb-2">
   <div class="row">
-    <div class="col-lg-10" style="height: 30vh;">
+    <div class="col-lg-10" style="max-height: 30vh;">
       <div id="header-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">

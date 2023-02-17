@@ -1,13 +1,15 @@
+<link rel="stylesheet" href="css/custom.css">
 <?php
 require_once("template/core.php");
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-info bg-radient bg-opacity-25 p-0">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 d-flex align-items-center justify-content-between">
-                <div class="col-md-2">
-                    <a class="navbar-brand" href="#">
-                        <img src="img/logo.png" alt="" style="width:100%">
+            <div class="col-md-12 d-flex align-items-center justify-content-between" style="height:auto">
+                <div class="col-md-2 p-0">
+                    <a class="navbar-brand" href="index.php">
+                        <img src="img/logo.png" alt="" style="width:80%">
                     </a>
                 </div>
                 <div class="col-md-10 ">
@@ -36,65 +38,61 @@ require_once("template/core.php");
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="col-md-3 m-auto">
+                                <div class="col-md-4 m-auto">
                                     <form action="process/xl_search.php" method="POST">
                                         <div class="input-group">
-                                            <input type="text" name ="search" class="form-control" placeholder="Nhập tên sản phẩm">
+                                            <input type="text" name="search" class="form-control" placeholder="Nhập tên sản phẩm">
                                             <div class="input-group-append">
-                                                <button class="input-group-text bg-transparent text-primary">
+                                                <button class="btn btn-outline-primary">
                                                     <i class="fa fa-search"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-2 m-auto">
-                                    <div class="dropdown  dropstart">
-                                        <button class="btn btn-outline-secondary rounded-circle float-end" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa-solid fa-user"></i>
-                                        </button>
-                                        <?php
-                                        if (isset($_SESSION['user'])) {
-                                            $u_id = $_SESSION['user'];
-                                            // echo $u_id;
-                                            $user = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
-                                        ?>
-                                            <span><?= $user['f_name'] . " " . $user['l_name'] ?></span>
-                                            <ul class="dropdown-menu border border-0" aria-labelledby="dropdownMenuButton1">
-                                                <li>
-                                                    <a class="dropdown-item" href="?action=giohang">
-                                                        <i class="fas fa-cart-shopping"></i>
-                                                        Giỏ hàng
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="?action=donhang">
-                                                        <i class="fa-sharp fa-solid fa-table-list"></i>
-                                                        Đơn hàng
-                                                    </a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="">
-                                                        <i class="fas fa-gear"></i>
-                                                        Cá nhân
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="logout.php">
-                                                        <i class="fa-solid fa-power-off"></i>
-                                                        Đăng xuất
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <ul class="dropdown-menu border border-0" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="signin.php">Đăng nhập</a></li>
-                                                <li><a class="dropdown-item" href="signup.php">Đăng kí</a></li>
-                                            </ul>
-                                        <?php
-                                        }
-                                        ?>
+                                <div class="col-md-1 m-auto p-0">
+                                    <div class="dropdown text-center" style="width: 100%;">
+                                        <img class=" dropbtn rounded-circle" src="img/avatar.png" alt="" style="width: 50%;">
+                                        <div class="dropdown-content bg-info bg-gradient bg-opacity-50">
+                                            <?php
+                                            if (isset($_SESSION['user'])) {
+                                                $u_id = $_SESSION['user'];
+                                                $user = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
+                                            ?>
+                                                <span><?= $user['f_name'] . " " . $user['l_name'] ?></span>
+                                                <a class="dropdown-item" href="?action=giohang">
+                                                    <i class="fas fa-cart-shopping"></i>
+                                                    Giỏ hàng
+                                                </a>
+                                                <a class="dropdown-item" href="?action=donhang">
+                                                    <i class="fa-sharp fa-solid fa-table-list"></i>
+                                                    Đơn hàng
+                                                </a>
+                                                <a class="dropdown-item" href="">
+                                                    <i class="fas fa-gear"></i>
+                                                    Cá nhân
+                                                </a>
+                                                <a class="dropdown-item" href="logout.php">
+                                                    <i class="fa-solid fa-power-off"></i>
+                                                    Đăng xuất
+                                                </a>
+                                        </div>
+                                    <?php
+                                            } else {
+                                    ?>
+
+                                        <a class="dropdown-item" href="signin.php">
+                                        <i class="fas fa-right-to-bracket"></i>
+                                            Đăng nhập
+                                        </a>
+                                        <a class="dropdown-item" href="signup.php">
+                                        <i class="fas fa-regular fa-user-plus"></i>
+                                            Đăng kí
+                                        </a>
+
+                                    <?php
+                                            }
+                                    ?>
                                     </div>
                                 </div>
                             </div>

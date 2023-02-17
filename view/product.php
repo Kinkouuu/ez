@@ -55,7 +55,6 @@ if (isset($_GET['p_id'])) {
                                 <?php
                                 echo $product['p_stock'] . ' VND';
 
-
                                 ?>
                             </p>
                         </div>

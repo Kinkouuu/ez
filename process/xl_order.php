@@ -88,6 +88,7 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
                 VALUES('$o_id','$dp_id','$sm_id','$s_id','$g_id','$book','$gb_price','40000','Đang chờ xác nhận')");
         }
     }
+    $db->exec("DELETE FROM `cart` WHERE `u_id` = '$u_id'");
     header("Location:../index.php?action=donhang");
 }
 ?>
