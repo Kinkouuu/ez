@@ -23,13 +23,13 @@ require_once("template/core.php");
                                             <a class="nav-link" aria-current="page" href="index.php">Trang chủ</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">Group buy</a>
+                                            <a class="nav-link" aria-current="page" href="?action=groupbuy">Group buy</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">Tìm nhà cung cấp</a>
+                                            <a class="nav-link" aria-current="page" href="?action=timnguonhang">Tìm nhà cung cấp</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">Hòm thư góp ý</a>
+                                            <a class="nav-link" aria-current="page" href="?action=homthugopy">Hòm thư góp ý</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" aria-current="page" href="?action=gioithieu">Giới thiệu</a>
@@ -37,15 +37,15 @@ require_once("template/core.php");
                                     </ul>
                                 </div>
                                 <div class="col-md-3 m-auto">
-                                    <form action=""></form>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search for products">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text bg-transparent text-primary">
-                                                <i class="fa fa-search"></i>
-                                            </span>
+                                    <form action="process/xl_search.php" method="POST">
+                                        <div class="input-group">
+                                            <input type="text" name ="search" class="form-control" placeholder="Nhập tên sản phẩm">
+                                            <div class="input-group-append">
+                                                <button class="input-group-text bg-transparent text-primary">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
                                     </form>
                                 </div>
                                 <div class="col-md-2 m-auto">

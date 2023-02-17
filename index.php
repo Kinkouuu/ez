@@ -4,7 +4,7 @@ require_once("layout/nav.php");
 
 ?>
 
-<div class="container-fluid pt-5">
+<div class="container-fluid pt-3">
   <div class="row">
     <div class="col-md-12">
     <?php
@@ -34,7 +34,16 @@ if ($tam == '') {
   require_once("view/order.php");
 }elseif ( $tam == 'chitietdonhang'){
   require_once("view/detail.php");
+}elseif ( $tam == 'groupbuy'){
+  require_once("view/groupbuy.php");
+}elseif ( $tam == 'homthugopy'){
+  require_once("view/contact.php");
+}elseif ( $tam == 'timnguonhang'){
+  require_once("view/sourcing.php");
+}else{
+  require_once("view/type.php");
 }
+
 ?>
     </div>
   </div>
