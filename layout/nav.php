@@ -9,7 +9,7 @@ require_once("template/core.php");
             <div class="col-md-12 d-flex align-items-center justify-content-between" style="height:auto">
                 <div class="col-md-2 p-0">
                     <a class="navbar-brand" href="index.php">
-                        <img src="img/logo.png" alt="" style="width:80%">
+                        <img src="img/new_logo.png" alt="" style="width:80%">
                     </a>
                 </div>
                 <div class="col-md-10 ">
@@ -68,7 +68,7 @@ require_once("template/core.php");
                                                     <i class="fa-sharp fa-solid fa-table-list"></i>
                                                     Đơn hàng
                                                 </a>
-                                                <a class="dropdown-item" href="">
+                                                <a class="dropdown-item" href="?action=thongtincanhan">
                                                     <i class="fas fa-gear"></i>
                                                     Cá nhân
                                                 </a>

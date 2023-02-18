@@ -40,6 +40,8 @@ if ($tam == '') {
   require_once("view/contact.php");
 }elseif ( $tam == 'timnguonhang'){
   require_once("view/sourcing.php");
+}elseif ( $tam == 'thongtincanhan'){
+  require_once("view/profile.php");
 }else{
   require_once("view/type.php");
 }
