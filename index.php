@@ -1,6 +1,7 @@
 <?php
 require_once("layout/header.php");
 require_once("layout/nav.php");
+require_once("layout/menu.php");
 
 ?>
 
@@ -38,9 +39,11 @@ if ($tam == '') {
   require_once("view/groupbuy.php");
 }elseif ( $tam == 'homthugopy'){
   require_once("view/contact.php");
-}elseif ( $tam == 'timnguonhang'){
+}
+elseif ( $tam == 'timnguonhang'){
   require_once("view/sourcing.php");
-}elseif ( $tam == 'thongtincanhan'){
+}
+elseif ( $tam == 'thongtincanhan'){
   require_once("view/profile.php");
 }else{
   require_once("view/type.php");

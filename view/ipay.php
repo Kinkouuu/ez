@@ -3,7 +3,7 @@ require_once("cart.php");
 if (isset($_POST['pmt'])) {
   $_SESSION['payment']  = $_POST['options'];
   echo "<meta http-equiv='refresh' content='0'>";
-}else{
+} else {
   $_SESSION['payment'] = '100%';
 }
 
@@ -93,14 +93,14 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
           <div class="d-flex justify-content-between mt-2">
             <h5>Cần cọc trước: </h5>
             <h5><?php
-              if($payment =='10%'){
-                echo number_format($tam * 1.045 * 0.1) . " VND";
-              }else if( $payment =='50%'){
-                echo number_format($tam * 1.045 * 0.5) . " VND";
-              }else{
-                echo number_format($tam * 1.045) . " VND";
-              }
-            ?></h5>
+                if ($payment == '10%') {
+                  echo number_format($tam * 1.045 * 0.1) . " VND";
+                } else if ($payment == '50%') {
+                  echo number_format($tam * 1.045 * 0.5) . " VND";
+                } else {
+                  echo number_format($tam * 1.045) . " VND";
+                }
+                ?></h5>
           </div>
           <div class="text-center m-1">
             <div class="">
@@ -119,18 +119,18 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
           <div class="row">
             <div class="col-md-6 form-group">
               <?php
-              if(isset($_GET['stock'])=='true'){
-                  $for = 'stock';
-              }else if(isset($_GET['stock'])=='false'){
+              if (isset($_GET['stock']) == 'true') {
+                $for = 'stock';
+              } else if (isset($_GET['stock']) == 'false') {
                 $for = 'gb';
-              }else{
-                $for ='';
+              } else {
+                $for = '';
               }
               ?>
               <input type="hidden" name="saleFor" value="<?= $for ?>">
               <input type="hidden" name="process" value="<?= $tam * 0.045 ?>">
               <label>Tên người nhận</label>
-              <input class="form-control" name ="o_name" type="text" value="<?= $in4['f_name'] . " " . $in4['l_name'] ?>" placeholder="Tên người nhận" required>
+              <input class="form-control" name="o_name" type="text" value="<?= $in4['f_name'] . " " . $in4['l_name'] ?>" placeholder="Tên người nhận" required>
             </div>
             <div class="col-md-6 form-group">
               <label>E-mail</label>
@@ -166,10 +166,24 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
             </div>
           </div>
           <div class=" col-md-12 text-center mt-3">
-            <button type="submit" name="order" class="btn btn-outline-primary w-30">
-              <i class="fas fa-regular fa-cart-shopping"></i>
+            <?php
+            if ($loi == true) {
+            ?>
+              <button type="submit" name="order" disable class="btn btn-outline-danger w-30">
+                <i class="fas fa-regular fa-cart-shopping"></i>
                 Đặt hàng
-            </button>
+              </button>
+            <?php
+            } else {
+            ?>
+              <button type="submit" name="order" class="btn btn-outline-primary w-30">
+                <i class="fas fa-regular fa-cart-shopping"></i>
+                Đặt hàng
+              </button>
+            <?php
+            }
+            ?>
+
           </div>
         </form>
       </div>

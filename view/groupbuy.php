@@ -20,7 +20,7 @@ $today = strtotime(date('Y-m-d H:i:s'));
                             </div>
                             <div class="text-center justifu-content-center border-top" style="height:20%;position: absolute;bottom: 0px;margin:auto;width:90%">
                                 <strong style="height:3rem;text-align:center"><?= $product['p_name'] ?></strong>
-                                <h6><?= number_format($product['p_gb'],2,'.','') . $product['sign'] . " = " .number_format($product['p_gb'] * $product['ex'] * $product['factor']) . " VND" ?></h6>
+                                <h6><?= number_format($product['p_gb'] * $product['ex'] * $product['factor']) . " VND" ?></h6>
                             </div>
                         </a>
                 </div>

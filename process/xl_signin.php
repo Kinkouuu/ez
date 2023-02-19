@@ -1,8 +1,6 @@
 <?php
 require_once ("../template/core.php");
-if (!isset($_SESSION['user'])) {
-    echo '<script>window.location="signin.php"</script>';
-  }
+
 if(isset($_POST['signIn'])){
     $acc = post('acc');
     $pass = hashp(post('pass'));
@@ -11,8 +9,7 @@ if(isset($_POST['signIn'])){
     $mail = $db->query("SELECT * FROM `user` WHERE `email` = '$acc' AND `pass` = '$pass'");
     $phone = $db->query("SELECT * FROM `user` WHERE `phone` = '$acc' AND `pass` = '$pass'");
     if(($mail->rowCount() == 0) && ($phone ->rowCount() == 0 )){
-
-        echo "<script type='text/javascript'>alert('Tài khoản hoặc mật khẩu sai');window.location = 'signin.php';</script>";
+        echo "<script type='text/javascript'>alert('Tài khoản hoặc mật khẩu sai');window.location = '../signin.php';</script>";
     } else {
 
         $u_id = '';
@@ -27,8 +24,9 @@ if(isset($_POST['signIn'])){
         }
 
         $_SESSION['user'] = $u_id;
+        header('location:../index.php');
     }
-    header('location:../index.php');
+    
     // echo $_SESSION['user'];
 
 }
