@@ -123,7 +123,7 @@ $n_m = 0; // so tien mua hang
                                             <td><?= number_format($order['sdh']) ?></td>
 
                                             <?php
-                                            $details = $db->query("SELECT * FROM `user`,`order`,`details` WHERE `user`.u_id = `order`.u_id AND `order`.o_id = `details`.o_id AND `user`.u_id = '$u_id'");
+                                            $details = $db->query("SELECT * FROM `user`,`order`,`details` WHERE `user`.u_id = `order`.u_id AND `order`.o_id = `details`.o_id   AND `user`.u_id = '$u_id'");
                                             $ssp = 0; //tinh tong san pham da mua
                                             $sts = 0; //tinh tong tien ship
                                             $tdh = 0; //tinh tong tien cac don hang
@@ -135,21 +135,25 @@ $n_m = 0; // so tien mua hang
                                                 $sth = $detail['amount'] * $detail['d_price']; // so tien hang cua tung don hang
                                                 $dh = 0;
                                                 // tong tien cac don hang += tien tung don thanh phan
-                                                if ($detail['s_id'] == 0) {
-                                                    $tdh = $tdh + $sth + $detail['fee']; // cong tong tien don thanh phan
-                                                    
-                                                } else {
-                                                    $s_id = $detail['s_id'];
-                                                    $sale = $db->query("SELECT `discount` FROM `sale` WHERE `s_id` = '$s_id'")->fetch();
-                                                    if ($sale['discount'] < $sth) { //neu tien giam gia < tien don hang
-                                                        $dh = $sth + $detail['fee'] - $sale['discount'];
-                                                        
-                                                    } else { //neu tien giam gia > tien don hang
-                                                        $dh = 0 + $detail['fee'];
+                                                    if($detail['stt'] != 'Đã hủy đơn'){
+                                                        if ($detail['s_id'] == 0) {
+                                                            $tdh = $tdh + $sth + $detail['fee']; // cong tong tien don thanh phan
+                                                            
+                                                        } else {
+                                                            $s_id = $detail['s_id'];
+                                                            $sale = $db->query("SELECT `discount` FROM `sale` WHERE `s_id` = '$s_id'")->fetch();
+                                                            if ($sale['discount'] < $sth) { //neu tien giam gia < tien don hang
+                                                                $dh = $sth + $detail['fee'] - $sale['discount'];
+                                                                
+                                                            } else  { //neu tien giam gia > tien don hang
+                                                                $dh = 0 + $detail['fee'];
+                                                            }
+                                                            $tdh += $dh;// Tinh tien mua hang theo tung nguoi dung
+        
+                                                        }
+                                                    }else{
+                                                        $tdh += 0;
                                                     }
-                                                    $tdh += $dh;// Tinh tien mua hang theo tung nguoi dung
-
-                                                }
                                                 
                                             }
                                             $n_m += $tdh+ $order['pdv']; // tinh tong tat ca don hang cua nguoi dung TMDK

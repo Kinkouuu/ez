@@ -12,11 +12,10 @@ require_once("template/core.php");
                         <img class="p-0" src="img/new_logo.png" alt="" style="width:100%;height:100%">
                     </a>
                 </div>
-<<<<<<< HEAD
+
                 <div class="col-md-9 p-2 m-auto">
-=======
-                <div class="col-md-9 m-auto">
->>>>>>> 60ce36fb0f9deb9d1e26b967035ae881c7d69bda
+
+
                     <form action="process/xl_search.php" method="POST">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control" placeholder="Nhập tên sản phẩm">
