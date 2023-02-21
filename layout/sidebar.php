@@ -1,28 +1,19 @@
 <div class="container-fluid mb-2">
   <div class="row">
-    <div class="col-lg-10" style="max-height: 30vh;">
-      <div id="header-carousel" class="carousel slide" data-ride="carousel">
+    <div class="col-lg-10" style="height: 30vh;">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="" src="img/landing.jpg">
+            <img class="" src="img/landing.jpg" style="width:100%">
           </div>
           <div class="carousel-item">
-            <img class="img-fluid" src="img/product.jpg">
+            <img class="img-fluid" src="img/product.jpg" style="width:100%">
           </div>
           <div class="carousel-item">
-            <img class="img-fluid" src="img/startsourcing.jpg" >
+            <img class="img-fluid" src="img/startsourcing.jpg" style="width:100%" >
           </div>
         </div>
-        <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-          <div class="btn btn-dark" style="width: 45px; height: 45px;">
-            <span class="carousel-control-prev-icon mb-n2"></span>
-          </div>
-        </a>
-        <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-          <div class="btn btn-dark" style="width: 45px; height: 45px;">
-            <span class="carousel-control-next-icon mb-n2"></span>
-          </div>
-        </a>
+        
       </div>
     </div>
     <div class="col-lg-2 text-center border p-0 overflow-auto" style="height:30vh">

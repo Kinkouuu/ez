@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['admin'])){
-  echo '<script>alert("You must login with admin account");window.location = "http:/ez/a/index.php";</script>';
+  echo '<script>alert("You must login with admin account");window.location = "https://ezsupply.app/a/index.php";</script>';
 }else{
   $a_id = $_SESSION['admin'];
 }
@@ -13,62 +13,62 @@ if (!isset($_SESSION['admin'])){
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#0c56f5"></i>
-            <a href="http://localhost/ez/a/product.php" class="nav-link" style="color:#0c56f5">Products
+            <a href="https://ezsupply.app/a/product.php" class="nav-link" style="color:#0c56f5">Products
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#628ff0"></i>
-            <a href="http://localhost/ez/a/user.php" class="nav-link" style="color:#628ff0">Users
+            <a href="https://ezsupply.app/a/user.php" class="nav-link" style="color:#628ff0">Users
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#1ff2ef"></i>
-            <a href="http://localhost/ez/a/order.php" class="nav-link" style="color:#1ff2ef">Orders
+            <a href="https://ezsupply.app/a/order.php" class="nav-link" style="color:#1ff2ef">Orders
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle"  style="color:#69f051" ></i>
-            <a href="http://localhost/ez/a/money.php" class="nav-link"  style="color:#69f051">Currency Exchange
+            <a href="https://ezsupply.app/a/money.php" class="nav-link"  style="color:#69f051">Currency Exchange
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:lime"></i>
-            <a href="http://localhost/ez/a/statist.php" class="nav-link" style="color:lime">Revenue Statistics
+            <a href="https://ezsupply.app/a/statist.php" class="nav-link" style="color:lime">Revenue Statistics
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:yellow"></i>
-            <a href="http://localhost/ez/a/spending.php" class="nav-link" style="color:yellow">User's Spending
+            <a href="https://ezsupply.app/a/spending.php" class="nav-link" style="color:yellow">User's Spending
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:gold" ></i>
-            <a href="http://localhost/ez/a/cate.php" class="nav-link" style="color:gold">Category Type
+            <a href="https://ezsupply.app/a/cate.php" class="nav-link" style="color:gold">Category Type
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:orange"></i>
-            <a href="http://localhost/ez/a/factory.php" class="nav-link" style="color:orange">Supply Factory
+            <a href="https://ezsupply.app/a/factory.php" class="nav-link" style="color:orange">Supply Factory
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:pink"></i>
-            <a href="http://localhost/ez/a/sale.php" class="nav-link" style="color:pink">Voucher Discount
+            <a href="https://ezsupply.app/a/sale.php" class="nav-link" style="color:pink">Voucher Discount
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#f097a4"></i>
-            <a href="http://localhost/ez/a/sourcing.php" class="nav-link" style="color:#f097a4">Start Soucing
+            <a href="https://ezsupply.app/a/sourcing.php" class="nav-link" style="color:#f097a4">Start Soucing
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:#eb3852"></i>
-            <a href="http://localhost/ez/a/shipment.php" class="nav-link" style="color:#eb3852">Shipment
+            <a href="https://ezsupply.app/a/shipment.php" class="nav-link" style="color:#eb3852">Shipment
             </a>
         </li>
         <li class="w3-bar-item w3-button d-flex align-items-center">
           <i class="nav-icon far fa-circle" style="color:red" ></i>
-            <a href="http://localhost/ez/a/logout.php" class="nav-link" style="color:red">Logout
+            <a href="https://ezsupply.app/a/logout.php" class="nav-link" style="color:red">Logout
             </a>
         </li>
       </ul>
@@ -77,6 +77,6 @@ if (!isset($_SESSION['admin'])){
 
 <div class="w3-teal mb-1">
   <button id="openNav" class="w3-button w3-teal w3-xlarge" style="font: caption;" onclick="w3_open()">&#9776;</button>
-  <a href="http://localhost/ez/a/home.php" class="w3-button w3-teal w3-xlarge" style="border: none;text-decoration:none; color: White;font: caption;"><i class="fa-solid fa-house-chimney"></i> HOME</a>
+  <a href="https://ezsupply.app/a/home.php" class="w3-button w3-teal w3-xlarge" style="border: none;text-decoration:none; color: White;font: caption;"><i class="fa-solid fa-house-chimney"></i> HOME</a>
 </div>
 

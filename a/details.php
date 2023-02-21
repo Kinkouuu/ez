@@ -236,7 +236,7 @@ if (isset($_POST['sub'])) {
                                 <td colspan="5">
                                     <div class="input-group">
                                         <label class="input-group-text">Sent date: </label>
-                                        <input type="date" class="form-control" name="sent" value="<?= $tt['d_date'] ?>" required>
+                                        <input type="date" class="form-control" name="sent" value="<?= $tt['d_date'] ?>">
                                     </div>
                                 </td>
                                 <td colspan="2">

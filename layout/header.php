@@ -23,4 +23,4 @@
   
 </head>
 
-<body>
+<body class="bg-info bg-opacity-10 bg-gradient">

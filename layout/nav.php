@@ -7,98 +7,68 @@ require_once("template/core.php");
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 d-flex align-items-center justify-content-between" style="height:auto">
-                <div class="col-md-2 p-0">
-                    <a class="navbar-brand" href="index.php">
-                        <img src="img/new_logo.png" alt="" style="width:80%">
+                <div class="col-md-2 p-0" style="height:100%">
+                    <a class="navbar-brand p-0" href="index.php">
+                        <img class="p-0" src="img/new_logo.png" alt="" style="width:100%;height:100%">
                     </a>
                 </div>
-                <div class="col-md-10 ">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                        <div class="col-md-12 ">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-between">
-                                        <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="index.php">Trang chủ</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="?action=groupbuy">Group buy</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="?action=timnguonhang">Tìm nhà cung cấp</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="?action=homthugopy">Hòm thư góp ý</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="?action=gioithieu">Giới thiệu</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4 m-auto">
-                                    <form action="process/xl_search.php" method="POST">
-                                        <div class="input-group">
-                                            <input type="text" name="search" class="form-control" placeholder="Nhập tên sản phẩm">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-1 m-auto p-0">
-                                    <div class="dropdown text-center" style="width: 100%;">
-                                        <img class=" dropbtn rounded-circle" src="img/avatar.png" alt="" style="width: 50%;">
-                                        <div class="dropdown-content bg-info bg-gradient bg-opacity-50">
-                                            <?php
-                                            if (isset($_SESSION['user'])) {
-                                                $u_id = $_SESSION['user'];
-                                                $user = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
-                                            ?>
-                                                <span><?= $user['f_name'] . " " . $user['l_name'] ?></span>
-                                                <a class="dropdown-item" href="?action=giohang">
-                                                    <i class="fas fa-cart-shopping"></i>
-                                                    Giỏ hàng
-                                                </a>
-                                                <a class="dropdown-item" href="?action=donhang">
-                                                    <i class="fa-sharp fa-solid fa-table-list"></i>
-                                                    Đơn hàng
-                                                </a>
-                                                <a class="dropdown-item" href="?action=thongtincanhan">
-                                                    <i class="fas fa-gear"></i>
-                                                    Cá nhân
-                                                </a>
-                                                <a class="dropdown-item" href="logout.php">
-                                                    <i class="fa-solid fa-power-off"></i>
-                                                    Đăng xuất
-                                                </a>
-                                        </div>
-                                    <?php
-                                            } else {
-                                    ?>
-
-                                        <a class="dropdown-item" href="signin.php">
-                                        <i class="fas fa-right-to-bracket"></i>
-                                            Đăng nhập
-                                        </a>
-                                        <a class="dropdown-item" href="signup.php">
-                                        <i class="fas fa-regular fa-user-plus"></i>
-                                            Đăng kí
-                                        </a>
-
-                                    <?php
-                                            }
-                                    ?>
-                                    </div>
-                                </div>
+                <div class="col-md-9 p-2 m-auto">
+                    <form action="process/xl_search.php" method="POST">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Nhập tên sản phẩm">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary">
+                                    <i class="fa fa-search"></i>
+                                </button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
+                <div class="col-md-1 d-flex m-auto p-0">
+                    <div class="dropdown text-center" style="max-width: 70%;">
+                        <img class=" dropbtn rounded-circle" src="img/avatar.png" alt="" style="max-width: 50%;width:auto">
+                        <div class="dropdown-content bg-info bg-gradient bg-opacity-50">
+                            <?php
+                            if (isset($_SESSION['user'])) {
+                                $u_id = $_SESSION['user'];
+                                $user = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
+                            ?>
+                                <span><?= $user['f_name'] . " " . $user['l_name'] ?></span>
+                                <a class="dropdown-item" href="?action=giohang">
+                                    <i class="fas fa-cart-shopping"></i>
+                                    Giỏ hàng
+                                </a>
+                                <a class="dropdown-item" href="?action=donhang">
+                                    <i class="fa-sharp fa-solid fa-table-list"></i>
+                                    Đơn hàng
+                                </a>
+                                <a class="dropdown-item" href="?action=thongtincanhan">
+                                    <i class="fas fa-gear"></i>
+                                    Cá nhân
+                                </a>
+                                <a class="dropdown-item" href="logout.php">
+                                    <i class="fa-solid fa-power-off"></i>
+                                    Đăng xuất
+                                </a>
+                        </div>
+                    <?php
+                            } else {
+                    ?>
+                        <a class="dropdown-item" href="signin.php">
+                            <i class="fas fa-right-to-bracket"></i>
+                            Đăng nhập
+                        </a>
+                        <a class="dropdown-item" href="signup.php">
+                            <i class="fas fa-regular fa-user-plus"></i>
+                            Đăng kí
+                        </a>
+                    <?php
+                            }
+                    ?>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>

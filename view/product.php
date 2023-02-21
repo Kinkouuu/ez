@@ -128,10 +128,10 @@ if (isset($_GET['p_id'])) {
                     </div>
                     <p style="color:red">Group by sẽ đóng vào ngày: <?php echo date("d-m-Y", $product2['e_date']) ?></p>
                     <?php
-                    $pre = $db->query("SELECT sum(amount) as tong FROM `details` WHERE `g_id` = '$g_id'")->fetch();
-                    ?>
-                    <p style="color:blue"><?php echo $pre['tong'] ?> sản phẩm đã được đặt trước</p>
-                <?php
+                    $pre = $db->query("SELECT sum(amount) as tong FROM `details` WHERE `g_id` = '$g_id' AND `p_id` = '$p_id'")->fetch();
+					if($pre['tong'] >0) {
+						echo ' <p style="color:blue">'.$pre['tong'].' sản phẩm đã được đặt trước</p>';
+					}
                 }
                 ?>
                 <?php
@@ -152,13 +152,13 @@ if (isset($_GET['p_id'])) {
                 <div class="d-flex justify-content-start">
                     <p><strong>Đã bán: </strong> <?php echo $sold['sold'] ?> sản phẩm</p>
                 </div>
-                <div class="p_info border border-end-0" style="max-height:240px;overflow-y:scroll">
+                <div class="p_info border ">
                     <p><strong>Mô tả sản phẩm: </strong>
                         <?php
                         $str = $product['specs'];
                         $dump = explode('-', $str);
-                        for ($x = 0; $x < sizeof($dump); $x++) {
-                            echo $dump[$x] . "<br />";
+                        for ($x = 1; $x < sizeof($dump); $x++) {
+                            echo "<br> -" .$dump[$x];
                         }
                         ?>
                     </p>
@@ -168,7 +168,7 @@ if (isset($_GET['p_id'])) {
             $f_id = $product['f_id'];
             $ncc = $db->query("SELECT * FROM `factory` WHERE `f_id` = '$f_id'")->fetch();
             ?>
-            <h5>Sản xuất bởi: <?= $ncc['f_name'] ?></h5>
+       
             <?php if ($ncc['represent'] != '') {
             ?>
                 <h5>Đại diện phân phối tại Việt Nam: <?= $ncc['represent'] ?></h5>

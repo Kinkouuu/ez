@@ -1,6 +1,18 @@
 <?php
 require_once("layout/sidebar.php");
 ?>
+<style>
+#p_info{
+    height: 20rem;
+    position: relative;
+}
+@media only screen and (max-width: 600px) {
+    #p_info{
+    height: 25rem;
+    position: relative;
+}
+}
+</style>
 <div class="text-center mb-4">
     <h2 class="section-title px-5"><span class="px-2">Sản phẩm mới nhất</span></h2>
 </div>
@@ -11,7 +23,7 @@ require_once("layout/sidebar.php");
             $products = $db->query("SELECT * FROM (`product` INNER JOIN `price` ON `price`.p_id = `product`.p_id) INNER JOIN `money` ON `money`.m_id = `price`.m_id WHERE `product`.remain > 0 ORDER BY `product`.p_id DESC");
             foreach ($products as $product) {
             ?>
-                <div class="col-md-2 m-auto product-item p-3 border rounded bg-light" style="min-height: 25rem;position: relative;">
+                <div class="col-md-2 m-auto product-item p-3 border rounded bg-light" id = "p_info">
                     <!-- <div class="row"> -->
                         <a href="?action=thongtinsanpham&p_id=<?= $product['p_id'] ?>" class="btn btn-sm text-dark p-0">
                             <div class="col-md-12 product-img position-relative overflow-hidden bg-transparent p-1" style="height:95%;position: absolute;top: 10px;">

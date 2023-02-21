@@ -1,6 +1,21 @@
+<style>
+  #inputTag {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+</style>
 <div class="container-fluid bg-secondary mb-5">
-<div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 10vh">
+  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 10vh">
     <h1 class="font-weight-semi-bold text-uppercase mb-3">Tìm nguồn hàng</h1>
+    <?php
+      if(isset($_GET['status'])){
+        echo '<span style="color:white">'.$_GET['status'].'</span>';
+      }
+    ?>
   </div>
 </div>
 
@@ -12,58 +27,65 @@
     <div class="col-lg-12 mb-5">
       <div class="contact-form">
         <div id="success"></div>
-        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+        <form action="process/xl_sourcing.php" method="POST" enctype="multipart/form-data">
           <div class="control-group">
-            <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+            <input type="text" class="form-control" name="name" id="name" placeholder="Họ tên" required="required" />
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="required" />
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="email" class="form-control" id="phone" placeholder="Your Phone" required="required" data-validation-required-message="Please enter your phone" />
+            <input type="text" class="form-control" name="phone" id="phone" placeholder="Số điện thoại" required="required" />
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="text" class="form-control" id="brandName" placeholder="Your Brand Name" required="required" data-validation-required-message="Please enter your brand name" />
+            <input type="text" class="form-control" name="brand" id="brandName" placeholder="Nhãn hàng" required="required" />
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="email" class="form-control" id="itemName" placeholder="Your Item Name" required="required" data-validation-required-message="Please enter your item name" />
+            <input type="text" class="form-control" name="item" id="itemName" placeholder="Tên sản phẩm" required="required" />
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="text" class="form-control" id="subject" placeholder="Your Description" required="required" data-validation-required-message="Please enter your description" />
+            <textarea class="form-control" name="spec" placeholder="Mô tả sản phẩm" id="floatingTextarea" rows="4" cols="50"></textarea>
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="text" class="form-control" id="request" placeholder="Your Request" required="required" data-validation-required-message="Please enter your request" />
+            <textarea class="form-control" name="request" placeholder="Yêu cầu về sản phẩm" id="floatingTextarea" rows="4" cols="50"></textarea>
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="text" class="form-control" id="price" placeholder="Your Price" required="required" data-validation-required-message="Please enter your price" />
+            <input type="number" class="form-control" name="price" id="price" placeholder="Giá khuyến nghị" required="required" />
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="text" class="form-control" id="quantity" placeholder="Your Quantity" required="required" data-validation-required-message="Please enter your quantity" />
+            <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Số lượng đặt mua" required="required" />
             <p class="help-block text-danger"></p>
           </div>
           <div class="control-group">
-            <input type="text" class="form-control" id="deposited" placeholder="Your Number of products deposited" required="required" data-validation-required-message="Please enter your deposited number" />
+            <input type="number" class="form-control" name="deposit" id="deposited" placeholder="Số lượng đã được cọc trước" />
             <p class="help-block text-danger"></p>
           </div>
-          <div class="control-group">
-            <label class="ml-xl-2" for="exampleFormControlFile1">Your Item Image</label>
-            <input type="file" class="form-control" id="exampleFormControlFile1">
-          </div>
-          <div class="control-group">
-            <label class="ml-xl-2 mt-3" for="exampleFormControlFile1">Your Item Date Opening</label>
-            <input type="date" class="form-control" id="exampleFormControlFile2">
+          <div class="control-group d-flex">
+            <div class="col-md-2">
+              <label for="inputTag">
+                Hình ảnh mẫu <br />
+                <i class="fa fa-2x fa-camera"></i>
+                <input name="image" id="inputTag" type="file" />
+                <span id="imageName"></span>
+              </label>
+            </div>
+            <div class="col-md-10">
+              <label class="ml-xl-2" for="exampleFormControlFile1">Ngày dự kiến mở bán</label>
+              <input type="date" name="open" class="form-control" id="exampleFormControlFile2">
+            </div>
           </div>
           <div class="mt-3">
-            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">
-              Send
+            <button class="btn btn-primary py-2 px-4" name="send" type="submit" id="sendMessageButton">
+              <i class="fas fa-envelope"></i>
+              Gửi yêu cầu
             </button>
           </div>
         </form>
@@ -71,3 +93,13 @@
     </div>
   </div>
 </div>
+<script>
+  let input = document.getElementById("inputTag");
+  let imageName = document.getElementById("imageName")
+
+  input.addEventListener("change", () => {
+    let inputImage = document.querySelector("input[type=file]").files[0];
+
+    imageName.innerText = inputImage.name;
+  })
+</script>
