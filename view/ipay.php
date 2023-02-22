@@ -129,6 +129,7 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
               ?>
               <input type="hidden" name="saleFor" value="<?= $for ?>">
               <input type="hidden" name="process" value="<?= $tam * 0.045 ?>">
+              <input type="hidden" name="payment" value="<?= $payment?>">
               <label>Tên người nhận</label>
               <input class="form-control" name="o_name" type="text" value="<?= $in4['f_name'] . " " . $in4['l_name'] ?>" placeholder="Tên người nhận" required>
             </div>
@@ -164,6 +165,7 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
               <textarea class="form-control" name="note" placeholder="Ghi chú cho đơn hàng hoặc mô tả địa chỉ giao hàng" id="floatingTextarea2" style="height: 100px"></textarea>
               <label for="floatingTextarea2"> Ghi chú</label>
             </div>
+           
           </div>
           <div class=" col-md-12 text-center mt-3">
             <?php

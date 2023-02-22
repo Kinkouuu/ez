@@ -2,7 +2,7 @@
 require_once("../template/core.php");
 if (!isset($_SESSION['user'])) {
     echo '<script>window.location="signin.php"</script>';
-  }
+}
 ?>
 <?php
 $today = strtotime(date('Y-m-d H:i:s')); //lay timstamp hen tai
@@ -22,7 +22,7 @@ if (isset($_POST['order'])){
         $for ='';
         // echo $for;
     }
-    $payment = $_SESSION['payment'];
+    $payment = post('payment');
     $o_name = post('o_name');
     $o_mail = post('o_mail');
     $o_phone = post('o_phone');
@@ -40,10 +40,10 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
     $tb = "Vui lòng thêm sản phẩm vào giỏ hàng!";
     header("location: ../index.php?action=giohang&tb= $tb");
 }else{
-    $db->exec("INSERT INTO `order` 
-    (`u_id`, `o_phone`,`o_name`,`o_city`,`o_district`,`o_ward`,`o_street`,`o_no`,`note`,`process`,`payment`,`o_mail`) 
-    VALUES ('$u_id', '$o_phone', '$o_name', '$o_city', '$o_district', '$o_ward', '$o_street', '$o_no','$note', '$process', '$payment','$o_mail')");
-    $o_id= $db->lastinsertid();
+    // $db->exec("INSERT INTO `order` 
+    // (`u_id`, `o_phone`,`o_name`,`o_city`,`o_district`,`o_ward`,`o_street`,`o_no`,`note`,`process`,`payment`,`o_mail`) 
+    // VALUES ('$u_id', '$o_phone', '$o_name', '$o_city', '$o_district', '$o_ward', '$o_street', '$o_no','$note', '$process', '$payment','$o_mail')");
+    // $o_id= $db->lastinsertid();
     // echo $o_id;
     foreach($cart as $row){
         $dp_id = $row['p_id'];
@@ -63,11 +63,11 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
             }
             // echo $sid;
             // Them thong tin don hang stock //
-            $db->exec("INSERT INTO `details` 
-                (`o_id`,`p_id`,`sm_id`,`s_id`,`amount`,`d_price`,`fee`,`stt`) 
-                    VALUES('$o_id','$dp_id','$sm_id','$s_id','$unit','$s_price','40000','Đang chờ xác nhận')");
-            // Cap nhat so luong con lai trong kho hang //
-            $db->exec("UPDATE `product` SET `remain` = remain - $unit WHERE `p_id` = '$dp_id'");
+            // $db->exec("INSERT INTO `details` 
+            //     (`o_id`,`p_id`,`sm_id`,`s_id`,`amount`,`d_price`,`fee`,`stt`) 
+            //         VALUES('$o_id','$dp_id','$sm_id','$s_id','$unit','$s_price','40000','Đang chờ xác nhận')");
+            // // Cap nhat so luong con lai trong kho hang //
+            // $db->exec("UPDATE `product` SET `remain` = remain - $unit WHERE `p_id` = '$dp_id'");
         }
         if($book > 0){
             $gb = $db ->query("SELECT * FROM 
@@ -76,19 +76,21 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
                         WHERE `product`.p_id = '$dp_id' AND $today < `gb`.e_date")->fetch();
             $g_id = $gb['g_id']; // lay ma groupby cua san pham
             // echo $g_id;
-            if($payment ='10%'){
-                $gb_price = $product['p_gb'] * $product['ex'] * $product['factor'] + $product['p_10']; 
-            }else if($payment ='50%'){
-                $gb_price = $product['p_gb'] * $product['ex'] * $product['factor'] + $product['p_50']; 
-            }else{
-                $gb_price = $product['p_gb'] * $product['ex'] * $product['factor']; 
-            }
-            $db->exec("INSERT INTO `details` 
-            (`o_id`,`p_id`,`sm_id`,`s_id`,`g_id`,`amount`,`d_price`,`fee`,`stt`) 
-                VALUES('$o_id','$dp_id','$sm_id','$s_id','$g_id','$book','$gb_price','40000','Đang chờ xác nhận')");
+                if($payment =='10%'){
+                    $gb_price = $product['p_gb'] * $product['ex'] * $product['factor'] + $product['p_10']; 
+                }else if($payment =='50%'){
+                    $gb_price = $product['p_gb'] * $product['ex'] * $product['factor'] + $product['p_50']; 
+                }else{
+                    $gb_price = $product['p_gb'] * $product['ex'] * $product['factor']; 
+                }
+            
+            echo $payment . "=" .$gb_price;
+            // $db->exec("INSERT INTO `details` 
+            // (`o_id`,`p_id`,`sm_id`,`s_id`,`g_id`,`amount`,`d_price`,`fee`,`stt`) 
+            //     VALUES('$o_id','$dp_id','$sm_id','$s_id','$g_id','$book','$gb_price','40000','Đang chờ xác nhận')");
         }
     }
-    $db->exec("DELETE FROM `cart` WHERE `u_id` = '$u_id'");
-    header("Location:../index.php?action=donhang");
+    // $db->exec("DELETE FROM `cart` WHERE `u_id` = '$u_id'");
+    // header("Location:../index.php?action=donhang");
 }
 ?>
