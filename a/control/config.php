@@ -9,14 +9,14 @@
     
     // $titleconfig = "";
     //ket noi db
-        $dbhost = 'a2nlmysql7plsk.secureserver.net:3306';
-        $dbname = 'shop';
-        $dbusername = 'shop';
-        $dbpassword = 'Hai@qt123';
-    // $dbhost = 'localhost';
-    // $dbname = 'ezsupply';
-    // $dbusername = 'root';
-    // $dbpassword = '';
+        // $dbhost = 'a2nlmysql7plsk.secureserver.net:3306';
+        // $dbname = 'shop';
+        // $dbusername = 'shop';
+        // $dbpassword = 'Hai@qt123';
+    $dbhost = 'localhost';
+    $dbname = 'ezsupply';
+    $dbusername = 'root';
+    $dbpassword = '';
     //-- Kết Nối PDO --//
 
     // Kiểm tra kết nối

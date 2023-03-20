@@ -123,7 +123,7 @@ $n_m = 0; // so tien mua hang
                                             <td><?= number_format($order['sdh']) ?></td>
 
                                             <?php
-                                            $details = $db->query("SELECT * FROM `user`,`order`,`details` WHERE `user`.u_id = `order`.u_id AND `order`.o_id = `details`.o_id   AND `user`.u_id = '$u_id'");
+                                            $details = $db->query("SELECT * FROM `user`,`order`,`details` WHERE `user`.u_id = `order`.u_id AND `order`.o_id = `details`.o_id   AND `user`.u_id = '$u_id' AND `details`.stt != 'Đã hủy đơn'");
                                             $ssp = 0; //tinh tong san pham da mua
                                             $sts = 0; //tinh tong tien ship
                                             $tdh = 0; //tinh tong tien cac don hang
@@ -132,31 +132,30 @@ $n_m = 0; // so tien mua hang
                                                 $n_p += $detail['amount']; // cap nhat tong so san pham tat ca nguoi dung TMDK
                                                 $sts += $detail['fee']; //cap nhat tong so tien ship phai tra theo tung nguoi dung
                                                 $n_sf += $detail['fee']; //cap nhat tong so tien ship thu cua khach hang TMDK
-                                                $sth = $detail['amount'] * $detail['d_price']; // so tien hang cua tung don hang
+                                                $sth = $detail['amount'] * $detail['d_price']+ $detail['fee']; // so tien hang cua tung don hang
                                                 $dh = 0;
                                                 // tong tien cac don hang += tien tung don thanh phan
                                                     if($detail['stt'] != 'Đã hủy đơn'){
                                                         if ($detail['s_id'] == 0) {
-                                                            $tdh = $tdh + $sth + $detail['fee']; // cong tong tien don thanh phan
+                                                            $tdh = $tdh + $sth ; // cong tong tien don thanh phan
                                                             
                                                         } else {
                                                             $s_id = $detail['s_id'];
                                                             $sale = $db->query("SELECT `discount` FROM `sale` WHERE `s_id` = '$s_id'")->fetch();
                                                             if ($sale['discount'] < $sth) { //neu tien giam gia < tien don hang
-                                                                $dh = $sth + $detail['fee'] - $sale['discount'];
+                                                                $dh = $sth  - $sale['discount'];
                                                                 
                                                             } else  { //neu tien giam gia > tien don hang
-                                                                $dh = 0 + $detail['fee'];
+                                                                $dh = 0 ;
                                                             }
                                                             $tdh += $dh;// Tinh tien mua hang theo tung nguoi dung
-        
                                                         }
                                                     }else{
                                                         $tdh += 0;
                                                     }
                                                 
                                             }
-                                            $n_m += $tdh+ $order['pdv']; // tinh tong tat ca don hang cua nguoi dung TMDK
+                                            $n_m += $tdh ; // tinh tong tat ca don hang cua nguoi dung TMDK
                                             ?>
                                             <td><?= number_format($ssp) ?></td>
                                             <td><?= number_format($order['pdv']) ?></td>
@@ -176,7 +175,7 @@ $n_m = 0; // so tien mua hang
                                 <td><?= number_format($n_p) ?></td>
                                 <td><?= number_format($n_pf) ?></td>
                                 <td><?= number_format($n_sf) ?></td>
-                                <td><?= number_format($n_m) ?></td>
+                                <td><?= number_format($n_m+$n_pf) ?></td>
                             </tr>
                             <tr>
                                 <td colspan="4">Average:</td>
@@ -184,7 +183,7 @@ $n_m = 0; // so tien mua hang
                                 <td><?= number_format($n_p/$n_u,2,'.',',') ?></td>
                                 <td><?= number_format($n_pf/$n_u,2,'.',',') ?></td>
                                 <td><?= number_format($n_sf/$n_u,2,'.',',') ?></td>
-                                <td><?= number_format($n_m/$n_u,2,'.',',') ?></td>
+                                <td><?= number_format(($n_m+$n_pf)/$n_u,2,'.',',') ?></td>
                             </tr>
 
                         </tbody>

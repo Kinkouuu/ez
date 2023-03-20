@@ -37,7 +37,7 @@ require_once("control/sidebar.php");
         $tsp += $row['amount'];
         $fee += $row['fee'];
         $s_id = $row['s_id']; // lay ma giam gia
-        $sth = $row['amount']*$row['d_price'];//tinh gia tri san pham don hang
+        $sth = $row['amount']*$row['d_price']+$row['fee'];//tinh gia tri san pham don hang
 
         if($s_id != 0){ //neu co giam gia
           $sale = $db->query("SELECT * FROM `sale` WHERE `s_id` = '$s_id'")->fetch();
@@ -57,7 +57,7 @@ require_once("control/sidebar.php");
       <h3><?= number_format($tsp)?> products have been sold</h3>
       <h3>Processing-fee: <?= number_format($total['pdv'])?> VND</h3>
       <h3>Ship-fee: <?= number_format($fee)?> VND</h3>
-      <h3>GMV: <?= number_format($tth)?> VND</h3>
+      <h3>GMV: <?= number_format($tth+$total['pdv'])?> VND</h3>
     </div>
   </div>
 </div>

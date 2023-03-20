@@ -139,6 +139,7 @@ if (isset($_POST['sub'])) {
                                 </td>
                                 <td>
                                     <?= $tt['amount'] ?>
+                                    <input type="hidden" name="soLuong" value="<?= $tt['amount'] ?>">
                                 </td>
                                 <td>
                                     <?= number_format($tt['fee']) ?> VND
@@ -166,6 +167,7 @@ if (isset($_POST['sub'])) {
                                         echo number_format($provi) . " VND";
                                     }
                                     ?>
+                                    <input type="hidden" name = "bill" value="<?= $provi*1.045 ?>">
                                 </td>
                                 <td>
                                     <?php $g_id = $tt['g_id']; //lay thong tin dot mo gb

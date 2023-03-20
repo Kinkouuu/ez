@@ -119,10 +119,13 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
           <div class="row">
             <div class="col-md-6 form-group">
               <?php
-              if (isset($_GET['stock']) == 'true') {
-                $for = 'stock';
-              } else if (isset($_GET['stock']) == 'false') {
-                $for = 'gb';
+              if (isset($_GET['stock']) ) {
+                if($_GET['stock'] == 'true'){
+                  $for = 'stock';
+                }else{
+                  $for = 'gb';
+                }
+                
               } else {
                 $for = '';
               }
@@ -171,7 +174,7 @@ $in4 = $db->query("SELECT * FROM `user` WHERE `u_id` = '$u_id'")->fetch();
             <?php
             if ($loi == true) {
             ?>
-              <button type="submit" name="order" disable class="btn btn-outline-danger w-30">
+              <button name="order" disabled class="btn btn-outline-danger w-30">
                 <i class="fas fa-regular fa-cart-shopping"></i>
                 Đặt hàng
               </button>

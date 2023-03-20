@@ -42,10 +42,10 @@ $p = $db->query("SELECT * FROM ((((`product` INNER JOIN `cate` ON `product`.c_id
                             <option value="<?= $p['sm_id'] ?>"><?= $p['sm_code'] ?></option>
                             <?php
                             $sm_id = $p['sm_id'];
-                            $check = $db->query("SELECT sum(amount) as damua FROM `details` WHERE `sm_id` = '$sm_id'")->fetch();
-                            $sldm = $check['damua'];
-                            echo $sldm;
-                            $sm = $db->query("SELECT * FROM `shipment` INNER JOIN `sm_list` ON `shipment`.sm_id = `sm_list`.sm_id WHERE  `shipment`.sm_id  != '$sm_id' AND `sm_list`.p_id ='$p_id' AND `sm_list`.sm_amount > '$sldm' ORDER BY `shipment`.sm_id ASC");
+                            // $check = $db->query("SELECT sum(amount) as damua FROM `details` WHERE `sm_id` = '$sm_id'")->fetch();
+                            // $sldm = $check['damua'];
+                            // echo $sldm;
+                            $sm = $db->query("SELECT * FROM `shipment` INNER JOIN `sm_list` ON `shipment`.sm_id = `sm_list`.sm_id WHERE  `shipment`.sm_id  != '$sm_id' AND `sm_list`.p_id ='$p_id' ORDER BY `shipment`.sm_id DESC");
                             foreach ($sm as $row) {
                             ?>
                                 <option value="<?= $row['sm_id'] ?>"><?= $row['sm_code'] ?></option>

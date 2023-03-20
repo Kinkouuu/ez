@@ -65,11 +65,16 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
             // Them thong tin don hang stock //
             $db->exec("INSERT INTO `details` 
                 (`o_id`,`p_id`,`sm_id`,`s_id`,`amount`,`d_price`,`fee`,`stt`) 
-                    VALUES('$o_id','$dp_id','$sm_id','$s_id','$unit','$s_price','40000','Đang chờ xác nhận')");
+                    VALUES('$o_id','$dp_id','$sm_id','$sid','$unit','$s_price','40000','Đang chờ xác nhận')");
             // Cap nhat so luong con lai trong kho hang //
             $db->exec("UPDATE `product` SET `remain` = remain - $unit WHERE `p_id` = '$dp_id'");
         }
         if($book > 0){
+            if($p_id == $dp_id && $for =='gb'){ // kiem tra co giam gia hay khong
+                $sid = $s_id;
+        }else{
+            $sid = 0;
+        }
             $gb = $db ->query("SELECT * FROM 
                 (`product` INNER JOIN `gb_list` ON `product`.p_id = `gb_list`.p_id) 
                     INNER JOIN `gb` ON `gb_list`.g_id = `gb`.g_id 
@@ -87,7 +92,7 @@ if ($cart->rowCount() == 0) { //ktra gio hang rong hay ko
             echo $payment . "=" .$gb_price;
             $db->exec("INSERT INTO `details` 
             (`o_id`,`p_id`,`sm_id`,`s_id`,`g_id`,`amount`,`d_price`,`fee`,`stt`) 
-                VALUES('$o_id','$dp_id','$sm_id','$s_id','$g_id','$book','$gb_price','40000','Đang chờ xác nhận')");
+                VALUES('$o_id','$dp_id','$sm_id','$sid','$g_id','$book','$gb_price','40000','Đang chờ xác nhận')");
         }
     }
     $db->exec("DELETE FROM `cart` WHERE `u_id` = '$u_id'");
